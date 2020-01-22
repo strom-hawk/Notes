@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="newNoteModel"
+            type="com.demoapps.notes.model.NewNoteModel" />
+
+        <variable
+            name="newNoteViewModel"
+            type="com.demoapps.notes.viewmodel.NewNoteViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.NewNoteActivity"
+        android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="@color/colorPrimary"
+                android:minHeight="?attr/actionBarSize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:titleTextColor="@color/colorWhite">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/newNoteEditText"
+                        android:layout_width="@dimen/dp_200"
+                        android:layout_height="@dimen/dp_40"
+                        android:hint="@string/title"
+                        android:textColorHint="@color/colorAccent"
+                        android:textColor="@color/colorAccent"
+                        android:background="@drawable/new_note_title_bg"
+                        android:textAlignment="center"
+                        android:maxLines="1"
+                        android:maxLength="20"
+                        android:inputType="text"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <Button
+                        android:id="@+id/colorButton"
+                        android:layout_width="@dimen/dp_40"
+                        android:layout_height="@dimen/dp_40"
+                        android:backgroundTint="@color/noteColor1"
+                        android:background="@drawable/new_note_title_bg"
+                        android:layout_marginStart="@dimen/dp_10"
+                        app:layout_constraintStart_toEndOf="@id/newNoteEditText"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                    <ImageButton
+                        android:id="@+id/doneImageButton"
+                        android:layout_width="@dimen/dp_35"
+                        android:layout_height="@dimen/dp_35"
+                        android:contentDescription="@string/add"
+                        android:src="@drawable/done_white"
+                        android:background="@drawable/done_icon_bg"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginEnd="@dimen/dp_10"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/noteBgColor1">
+
+            <TextView
+                android:id="@+id/dateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColor1"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:textSize="@dimen/sp_15"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/dp_10"/>
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/noteEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            android:background="@color/noteBgColor1"
+            android:textColor="@color/textColor1"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:textSize="@dimen/sp_20"
+            android:lines="8"/>
+
+    </LinearLayout>
+
+</layout>

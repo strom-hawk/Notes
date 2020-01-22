@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="com.demoapps.notes.viewmodel.ColorPickerViewModel" />
+
+        <variable
+            name="model"
+            type="com.demoapps.notes.model.ColorPickerModel" />
+    </data>
+
+    <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <GridLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/colorButton1"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:backgroundTint="@color/noteColor1"
+                android:background="@drawable/new_note_title_bg"
+                android:layout_marginStart="@dimen/dp_10" />
+
+            <Button
+                android:id="@+id/colorButton2"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:backgroundTint="@color/noteColor2"
+                android:background="@drawable/new_note_title_bg"
+                android:layout_marginStart="@dimen/dp_10" />
+
+            <Button
+                android:id="@+id/colorButton3"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:backgroundTint="@color/noteColor3"
+                android:background="@drawable/new_note_title_bg"
+                android:layout_marginStart="@dimen/dp_10" />
+
+        </GridLayout>
+
+        <GridLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10">
+
+            <Button
+                android:id="@+id/colorButton4"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:backgroundTint="@color/noteColor4"
+                android:background="@drawable/new_note_title_bg"
+                android:layout_marginStart="@dimen/dp_10" />
+
+            <Button
+                android:id="@+id/colorButton5"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:backgroundTint="@color/noteColor5"
+                android:background="@drawable/new_note_title_bg"
+                android:layout_marginStart="@dimen/dp_10" />
+
+            <Button
+                android:id="@+id/colorButton6"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:backgroundTint="@color/noteColor6"
+                android:background="@drawable/new_note_title_bg"
+                android:layout_marginStart="@dimen/dp_10" />
+
+        </GridLayout>
+
+        <GridLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10">
+
+            <Button
+                android:id="@+id/colorButton7"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:backgroundTint="@color/noteColor7"
+                android:background="@drawable/new_note_title_bg"
+                android:layout_marginStart="@dimen/dp_10" />
+
+            <Button
+                android:id="@+id/colorButton8"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:backgroundTint="@color/noteColor8"
+                android:background="@drawable/new_note_title_bg"
+                android:layout_marginStart="@dimen/dp_10" />
+
+            <Button
+                android:id="@+id/colorButton9"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:backgroundTint="@color/noteColor9"
+                android:background="@drawable/new_note_title_bg"
+                android:layout_marginStart="@dimen/dp_10" />
+
+        </GridLayout>
+
+
+    </GridLayout>
+</layout>

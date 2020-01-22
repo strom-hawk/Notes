@@ -4,25 +4,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.demoapps.notes.interfaces.CallBack;
 import com.demoapps.notes.model.HomeScreenModel;
 import com.demoapps.notes.R;
 import com.demoapps.notes.viewmodel.HomeScreenViewModel;
 import com.demoapps.notes.databinding.ActivityHomescreenBinding;
 
-public class HomeScreen extends AppCompatActivity implements View.OnClickListener {
+public class HomeScreenActivity extends AppCompatActivity implements CallBack {
     private HomeScreenModel homeScreenModel;
     private HomeScreenViewModel homeScreenViewModel;
-    Toolbar toolbar;
-    ImageButton addButton;
+    private Toolbar toolbar;
+    private ImageButton addButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_homescreen);
         initDataBinding();
         initToolBar();
         initViews();
@@ -30,7 +31,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
 
     private void initDataBinding(){
         homeScreenModel = new HomeScreenModel();
-        homeScreenViewModel = new HomeScreenViewModel();
+        homeScreenViewModel = new HomeScreenViewModel(this, this);
         ActivityHomescreenBinding activityHomescreenBinding = DataBindingUtil.setContentView(this, R.layout.activity_homescreen);
         activityHomescreenBinding.setHomeScreenHandler(homeScreenViewModel);
         activityHomescreenBinding.setHomeScreenModel(homeScreenModel);
@@ -44,11 +45,18 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
 
     private void initViews(){
         addButton = (ImageButton) findViewById(R.id.newNote);
-        addButton.setOnClickListener(this);
     }
 
     @Override
-    public void onClick(View view) {
+    public void onSuccess(String txnType, String txnStatus, String txnMessage) {
+        if(txnType.equalsIgnoreCase(getString(R.string.add_new))){
+            Intent intent = new Intent(this, AddNewActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onFailure(String txnStatus, String txnMessage) {
 
     }
 }

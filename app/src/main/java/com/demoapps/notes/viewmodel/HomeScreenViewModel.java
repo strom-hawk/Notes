@@ -1,13 +1,25 @@
 package com.demoapps.notes.viewmodel;
 
-import android.util.Log;
+import android.content.Context;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
 
+import com.demoapps.notes.R;
+import com.demoapps.notes.interfaces.CallBack;
+import com.demoapps.notes.utils.ApplicationConstants;
+
 public class HomeScreenViewModel extends ViewModel {
+    private Context context;
+    private CallBack callBack;
+
+    public HomeScreenViewModel(Context context, CallBack callBack) {
+        this.context = context;
+        this.callBack = callBack;
+    }
 
     public  void addNewNote(View view){
-        Log.d("add", "add new note called");
+        callBack.onSuccess(context.getString(R.string.add_new), ApplicationConstants.EMPTY_STRING, ApplicationConstants.EMPTY_STRING);
     }
 }

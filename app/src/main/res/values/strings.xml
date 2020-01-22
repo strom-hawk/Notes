@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Notes</string>
     <string name="add">Add</string>
+    <string name="add_new">Add_New</string>
+    <string name="add_new_note">Add_New_Note</string>
+    <string name="add_new_checklist">Add_New_Checklist</string>
+    <string name="title">Title</string>
+    <string name="underdevelopment">Under development</string>
 </resources>
