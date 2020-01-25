@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="viewModel"
-            type="com.demoapps.notes.viewmodel.ColorPickerViewModel" />
-
-        <variable
-            name="model"
-            type="com.demoapps.notes.model.ColorPickerModel" />
+            name="colorPickerHandler"
+            type="com.demoapps.notes.viewmodel.NewNoteViewModel" />
     </data>
 
-    <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/colorPickerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
         <GridLayout
+            android:id="@+id/grid1"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/grid2"
+            app:layout_constraintStart_toStartOf="@id/grid2"
+            android:layout_marginBottom="@dimen/dp_10">
 
             <Button
                 android:id="@+id/colorButton1"
@@ -25,7 +26,8 @@
                 android:layout_height="@dimen/dp_40"
                 android:backgroundTint="@color/noteColor1"
                 android:background="@drawable/new_note_title_bg"
-                android:layout_marginStart="@dimen/dp_10" />
+                android:layout_marginStart="@dimen/dp_10"
+                android:onClick="@{colorPickerHandler::changeColor}"/>
 
             <Button
                 android:id="@+id/colorButton2"
@@ -33,7 +35,8 @@
                 android:layout_height="@dimen/dp_40"
                 android:backgroundTint="@color/noteColor2"
                 android:background="@drawable/new_note_title_bg"
-                android:layout_marginStart="@dimen/dp_10" />
+                android:layout_marginStart="@dimen/dp_10"
+                android:onClick="@{colorPickerHandler::changeColor}"/>
 
             <Button
                 android:id="@+id/colorButton3"
@@ -41,15 +44,20 @@
                 android:layout_height="@dimen/dp_40"
                 android:backgroundTint="@color/noteColor3"
                 android:background="@drawable/new_note_title_bg"
-                android:layout_marginStart="@dimen/dp_10" />
+                android:layout_marginStart="@dimen/dp_10"
+                android:onClick="@{colorPickerHandler::changeColor}"/>
 
         </GridLayout>
 
         <GridLayout
+            android:id="@+id/grid2"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
             <Button
                 android:id="@+id/colorButton4"
@@ -57,7 +65,8 @@
                 android:layout_height="@dimen/dp_40"
                 android:backgroundTint="@color/noteColor4"
                 android:background="@drawable/new_note_title_bg"
-                android:layout_marginStart="@dimen/dp_10" />
+                android:layout_marginStart="@dimen/dp_10"
+                android:onClick="@{colorPickerHandler::changeColor}"/>
 
             <Button
                 android:id="@+id/colorButton5"
@@ -65,7 +74,8 @@
                 android:layout_height="@dimen/dp_40"
                 android:backgroundTint="@color/noteColor5"
                 android:background="@drawable/new_note_title_bg"
-                android:layout_marginStart="@dimen/dp_10" />
+                android:layout_marginStart="@dimen/dp_10"
+                android:onClick="@{colorPickerHandler::changeColor}"/>
 
             <Button
                 android:id="@+id/colorButton6"
@@ -73,15 +83,19 @@
                 android:layout_height="@dimen/dp_40"
                 android:backgroundTint="@color/noteColor6"
                 android:background="@drawable/new_note_title_bg"
-                android:layout_marginStart="@dimen/dp_10" />
+                android:layout_marginStart="@dimen/dp_10"
+                android:onClick="@{colorPickerHandler::changeColor}"/>
 
         </GridLayout>
 
         <GridLayout
+            android:id="@+id/grid3"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10">
+            android:layout_marginTop="@dimen/dp_10"
+            app:layout_constraintStart_toStartOf="@id/grid2"
+            app:layout_constraintTop_toBottomOf="@id/grid2">
 
             <Button
                 android:id="@+id/colorButton7"
@@ -89,7 +103,8 @@
                 android:layout_height="@dimen/dp_40"
                 android:backgroundTint="@color/noteColor7"
                 android:background="@drawable/new_note_title_bg"
-                android:layout_marginStart="@dimen/dp_10" />
+                android:layout_marginStart="@dimen/dp_10"
+                android:onClick="@{colorPickerHandler::changeColor}"/>
 
             <Button
                 android:id="@+id/colorButton8"
@@ -97,7 +112,8 @@
                 android:layout_height="@dimen/dp_40"
                 android:backgroundTint="@color/noteColor8"
                 android:background="@drawable/new_note_title_bg"
-                android:layout_marginStart="@dimen/dp_10" />
+                android:layout_marginStart="@dimen/dp_10"
+                android:onClick="@{colorPickerHandler::changeColor}"/>
 
             <Button
                 android:id="@+id/colorButton9"
@@ -105,10 +121,11 @@
                 android:layout_height="@dimen/dp_40"
                 android:backgroundTint="@color/noteColor9"
                 android:background="@drawable/new_note_title_bg"
-                android:layout_marginStart="@dimen/dp_10" />
+                android:layout_marginStart="@dimen/dp_10"
+                android:onClick="@{colorPickerHandler::changeColor}"/>
 
         </GridLayout>
 
 
-    </GridLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -7,17 +7,40 @@
 
     <color name="textColor1">#37474f</color>
 
-
     <color name="noteColor1">#01579b</color>
+    <color name="toolbarNoteColor1">#0288d1</color>
     <color name="noteBgColor1">#e1f5fe</color>
 
-    <color name="noteColor2">#d32f2f</color>
-    <color name="noteColor3">#7e57c2</color>
-    <color name="noteColor4">#009688</color>
-    <color name="noteColor5">#4caf50</color>
-    <color name="noteColor6">#ffee58</color>
-    <color name="noteColor7">#ffa726</color>
-    <color name="noteColor8">#ff5722</color>
-    <color name="noteColor9">#607d8b</color>
+    <color name="noteColor2">#b71c1c</color>
+    <color name="toolbarNoteColor2">#ef5350</color>
+    <color name="noteBgColor2">#ffebee</color>
+
+    <color name="noteColor3">#4a148c</color>
+    <color name="toolbarNoteColor3">#ab47bc</color>
+    <color name="noteBgColor3">#e1bee7</color>
+
+    <color name="noteColor4">#004d40</color>
+    <color name="toolbarNoteColor4">#26a69a</color>
+    <color name="noteBgColor4">#b2dfdb</color>
+
+    <color name="noteColor5">#1b5e20</color>
+    <color name="toolbarNoteColor5">#66bb6a</color>
+    <color name="noteBgColor5">#c8e6c9</color>
+
+    <color name="noteColor6">#e65100</color>
+    <color name="toolbarNoteColor6">#ff9800</color>
+    <color name="noteBgColor6">#ffe0b2</color>
+
+    <color name="noteColor7">#311b92</color>
+    <color name="toolbarNoteColor7">#7e57c2</color>
+    <color name="noteBgColor7">#d1c4e9</color>
+
+    <color name="noteColor8">#212121</color>
+    <color name="toolbarNoteColor8">#616161</color>
+    <color name="noteBgColor8">#e0e0e0</color>
+
+    <color name="noteColor9">#c51162</color>
+    <color name="toolbarNoteColor9">#f50057</color>
+    <color name="noteBgColor9">#ff80ab</color>
 
 </resources>
