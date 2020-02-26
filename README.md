@@ -6,3 +6,5 @@ which can be used to note down important notes and make list for other stuff.
 Specs:
 
 1. Full MVVM Architecture used for the project.
+
+2. Room Library for database manipulations.
