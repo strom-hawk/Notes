@@ -80,7 +80,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginEnd="@dimen/dp_10"
                     android:scaleType="fitCenter"
-                    android:adjustViewBounds="true"/>
+                    android:adjustViewBounds="true"
+                    android:onClick="@{newNoteViewModel::addNewNote}"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

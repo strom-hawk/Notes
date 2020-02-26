@@ -93,6 +93,7 @@ public class NewNoteActivity extends AppCompatActivity implements CallBack {
     private void toggleColorPickerView(){
         if(colorView.getVisibility() == View.VISIBLE){
             colorView.setVisibility(View.GONE);
+            noteEditText.setFocusableInTouchMode(true);
             noteEditText.setFocusable(true);
 
         }else{
