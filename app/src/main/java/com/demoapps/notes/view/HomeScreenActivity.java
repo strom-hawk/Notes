@@ -22,6 +22,7 @@ import com.demoapps.notes.model.HomeScreenModel;
 import com.demoapps.notes.R;
 import com.demoapps.notes.viewmodel.HomeScreenViewModel;
 import com.demoapps.notes.databinding.ActivityHomescreenBinding;
+import com.demoapps.notes.viewmodel.HomeScreenViewModelFactory;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -50,7 +51,7 @@ public class HomeScreenActivity extends AppCompatActivity implements CallBack, L
 
     private void initDataBinding(){
         homeScreenModel = new HomeScreenModel();
-        homeScreenViewModel = new HomeScreenViewModel();
+        homeScreenViewModel = new HomeScreenViewModel(this);
         homeScreenViewModel = new HomeScreenViewModel(this, this);
 
         activityHomescreenBinding = DataBindingUtil.setContentView(this, R.layout.activity_homescreen);
@@ -70,8 +71,13 @@ public class HomeScreenActivity extends AppCompatActivity implements CallBack, L
         recyclerView = (RecyclerView) findViewById(R.id.notesRecyclerView);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     private void initAdapter(){
-        homeScreenViewModel = ViewModelProviders.of(context).get(HomeScreenViewModel.class);
+        homeScreenViewModel = new ViewModelProvider(this, new HomeScreenViewModelFactory(this)).get(HomeScreenViewModel.class);
         homeScreenViewModel.getNotesLiveData().observe(context, notesListUpdateObserver);
     }
 

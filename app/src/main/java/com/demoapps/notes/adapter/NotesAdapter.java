@@ -36,7 +36,6 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         HomeScreenModel homeScreenModel = notesArrayList.get(position);
         RecyclerViewViewHolder viewHolder = (RecyclerViewViewHolder) holder;
         viewHolder.noteTitle.setText(homeScreenModel.getNoteTitle());
-        viewHolder.noteDate.setText(homeScreenModel.getNoteDate());
         viewHolder.noteText.setText(homeScreenModel.getNoteText());
     }
 

@@ -53,9 +53,11 @@
                     android:maxLines="1"
                     android:maxLength="20"
                     android:inputType="text"
+                    android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:addTextChangedListener="@{newNoteViewModel.notesTitleWatcher()}"/>
 
                 <Button
                     android:id="@+id/colorButton"
@@ -130,7 +132,8 @@
             android:fontFamily="sans-serif-condensed-medium"
             android:textSize="@dimen/sp_20"
             android:hint="@string/type_here"
-            android:gravity="start"/>
+            android:gravity="start"
+            app:addTextChangedListener="@{newNoteViewModel.notesTextWatcher()}"/>
 
         <include
             android:id="@+id/colorPickerView"

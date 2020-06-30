@@ -7,4 +7,9 @@
     <string name="title">Title</string>
     <string name="type_here">Type here ...</string>
     <string name="underdevelopment">Under development</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="error_message">Error</string>
+    <string name="same_note_error_msg">Note with same title exist</string>
+    <string name="note_title_length_error_msg">Length of title is 0</string>
+    <string name="ok_button_msg">OK</string>
 </resources>

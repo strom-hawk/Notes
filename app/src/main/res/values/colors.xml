@@ -6,6 +6,7 @@
     <color name="colorWhite">#FFFFFF</color>
 
     <color name="textColor1">#37474f</color>
+    <color name="dialogTextColor">#263238</color>
 
     <color name="noteColor1">#01579b</color>
     <color name="toolbarNoteColor1">#0288d1</color>
