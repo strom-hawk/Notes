@@ -69,6 +69,7 @@ public class CommonUtils {
             title.setVisibility(View.GONE);
         }
 
+        
         title.setText(dialogTitle);
         subTitle.setText(dialogMessage);
         okButton.setText(buttonText);
@@ -92,7 +93,7 @@ public class CommonUtils {
         ((Activity)context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
         int width = displayMetrics.widthPixels;
-        
+
         Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
