@@ -12,4 +12,5 @@
     <string name="same_note_error_msg">Note with same title exist</string>
     <string name="note_title_length_error_msg">Length of title is 0</string>
     <string name="ok_button_msg">OK</string>
+    <string name="new_note_noted">Noted</string>
 </resources>

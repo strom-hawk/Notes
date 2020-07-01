@@ -48,8 +48,7 @@ public class NewNoteViewModel extends ViewModel {
         if(null != newNoteModel.getNoteTitle() && newNoteModel.getNoteTitle().length() > ApplicationConstants.NUMBER_ZERO){
             if(!checkExistingNotes()){
                 noteDAO.insert(newNoteModel);
-                CommonUtils.showAlertDialogWithFinishActivity(context, "Done",
-                        "Saved", context.getResources().getString(R.string.ok_button_msg));
+                callBack.onSuccess(ApplicationConstants.NEW_NOTE_SAVED, ApplicationConstants.EMPTY_STRING, ApplicationConstants.EMPTY_STRING);
             }else{
                 CommonUtils.showAlertDialog(context, context.getResources().getString(R.string.error_message),
                         context.getResources().getString(R.string.same_note_error_msg), context.getResources().getString(R.string.ok_button_msg));

@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.databinding.DataBindingUtil;
@@ -19,6 +20,7 @@ import com.demoapps.notes.databinding.ActivityNewNoteBinding;
 import com.demoapps.notes.interfaces.CallBack;
 import com.demoapps.notes.model.NewNoteModel;
 import com.demoapps.notes.utils.ApplicationConstants;
+import com.demoapps.notes.utils.CommonUtils;
 import com.demoapps.notes.viewmodel.NewNoteViewModel;
 
 import java.text.SimpleDateFormat;
@@ -87,6 +89,9 @@ public class NewNoteActivity extends AppCompatActivity implements CallBack {
         } else if(txnType.equalsIgnoreCase(ApplicationConstants.COLOR_PICKED)){
             changeNoteColor(txnMessage);
             colorView.setVisibility(View.GONE);
+        } else if(txnType.equalsIgnoreCase(ApplicationConstants.NEW_NOTE_SAVED)){
+            CommonUtils.showAlertDialogWithFinishActivity(this, ApplicationConstants.HIDE_DIALOG_TITLE,
+                    getResources().getString(R.string.new_note_noted), getResources().getString(R.string.ok_button_msg), true);
         }
     }
 
