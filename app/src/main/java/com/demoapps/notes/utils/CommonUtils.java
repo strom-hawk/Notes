@@ -69,7 +69,7 @@ public class CommonUtils {
             title.setVisibility(View.GONE);
         }
 
-        
+
         title.setText(dialogTitle);
         subTitle.setText(dialogMessage);
         okButton.setText(buttonText);

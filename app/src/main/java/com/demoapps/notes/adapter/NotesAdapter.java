@@ -37,6 +37,7 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         RecyclerViewViewHolder viewHolder = (RecyclerViewViewHolder) holder;
         viewHolder.noteTitle.setText(homeScreenModel.getNoteTitle());
         viewHolder.noteText.setText(homeScreenModel.getNoteText());
+        viewHolder.noteDate.setText(homeScreenModel.getLastUpdatedDate());
     }
 
     @Override

@@ -43,6 +43,7 @@ public class HomeScreenViewModel extends ViewModel {
     }
 
     public MutableLiveData<ArrayList<HomeScreenModel>> getNotesLiveData() {
+        populateList();
         return notesLiveData;
     }
 
@@ -51,17 +52,6 @@ public class HomeScreenViewModel extends ViewModel {
     }
 
     private void populateList(){
-
-        //HomeScreenModel homeScreenModel = new HomeScreenModel();
-        /*homeScreenModel.setNoteTitle("note1");
-        homeScreenModel.setNoteColor("red");
-        homeScreenModel.setNoteText("loren ipsum loren ipsum loren ipsum loren ipsum loren ipsum loren ipsum");
-        notesArrayList = new ArrayList<>();
-        notesArrayList.add(homeScreenModel);
-        notesArrayList.add(homeScreenModel);
-        notesArrayList.add(homeScreenModel);
-        notesArrayList.add(homeScreenModel);*/
-
         List<NewNoteModel> notes = null;
 
         try{
@@ -72,22 +62,22 @@ public class HomeScreenViewModel extends ViewModel {
             e.printStackTrace();
         }
 
-
-
         notesArrayList = new ArrayList<>();
-
         if(null != notes && notes.size() > 0){
             for(int i=0; i<notes.size(); i++){
                 HomeScreenModel homeScreenModel = new HomeScreenModel();
                 homeScreenModel.setNoteTitle(notes.get(i).getNoteTitle());
                 homeScreenModel.setNoteColor(notes.get(i).getNoteColor());
                 homeScreenModel.setNoteText(notes.get(i).getNoteText());
+                homeScreenModel.setLastUpdatedDate(notes.get(i).getLastUpdatedDate());
                 notesArrayList.add(homeScreenModel);
             }
         }
-
-        System.out.println("-----notes array list size ---> " + notesArrayList.size());
         notesLiveData.setValue(notesArrayList);
+    }
+
+    public List<NewNoteModel> getNotes(){
+        return noteDAO.getNotes();
     }
 
     public  void addNewNote(View view){

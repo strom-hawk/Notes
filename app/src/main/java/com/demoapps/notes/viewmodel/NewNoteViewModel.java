@@ -17,7 +17,11 @@ import com.demoapps.notes.utils.AppDatabase;
 import com.demoapps.notes.utils.ApplicationConstants;
 import com.demoapps.notes.utils.CommonUtils;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class NewNoteViewModel extends ViewModel {
@@ -55,7 +59,7 @@ public class NewNoteViewModel extends ViewModel {
             }
         } else{
             CommonUtils.showAlertDialog(context, context.getResources().getString(R.string.error_message),
-                    context.getResources().getString(R.string.note_title_length_error_msg), context.getResources().getString(R.string.ok_button_msg));
+                    context.getResources().getString(R.string.title_hint), context.getResources().getString(R.string.ok_button_msg));
         }
 
     }
@@ -98,6 +102,13 @@ public class NewNoteViewModel extends ViewModel {
             @Override
             public void afterTextChanged(Editable s) {}
         };
+    }
+
+    public String getCurrentDate(){
+        Date date = Calendar.getInstance().getTime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(ApplicationConstants.DATE_FORMAT, Locale.ENGLISH);
+        newNoteModel.setLastUpdatedDate(simpleDateFormat.format(date));
+        return simpleDateFormat.format(date);
     }
 
 }

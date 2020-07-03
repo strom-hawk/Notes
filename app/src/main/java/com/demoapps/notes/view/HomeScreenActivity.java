@@ -46,7 +46,6 @@ public class HomeScreenActivity extends AppCompatActivity implements CallBack, L
         initDataBinding();
         initToolBar();
         initViews();
-        initAdapter();
     }
 
     private void initDataBinding(){
@@ -74,21 +73,21 @@ public class HomeScreenActivity extends AppCompatActivity implements CallBack, L
     @Override
     protected void onResume() {
         super.onResume();
+        initAdapter();
     }
 
     private void initAdapter(){
         homeScreenViewModel = new ViewModelProvider(this, new HomeScreenViewModelFactory(this)).get(HomeScreenViewModel.class);
-        homeScreenViewModel.getNotesLiveData().observe(context, notesListUpdateObserver);
+        homeScreenViewModel.getNotesLiveData().observe(this, new Observer<ArrayList<HomeScreenModel>>() {
+            @Override
+            public void onChanged(ArrayList<HomeScreenModel> homeScreenModels) {
+                notesAdapter = new NotesAdapter(context, homeScreenModels);
+                notesAdapter.notifyDataSetChanged();
+                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                recyclerView.setAdapter(notesAdapter);
+            }
+        });
     }
-
-    Observer<ArrayList<HomeScreenModel>> notesListUpdateObserver = new Observer<ArrayList<HomeScreenModel>>() {
-        @Override
-        public void onChanged(ArrayList<HomeScreenModel> homeScreenModels) {
-            notesAdapter = new NotesAdapter(context, homeScreenModels);
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            recyclerView.setAdapter(notesAdapter);
-        }
-    };
 
     @Override
     public void onSuccess(String txnType, String txnStatus, String txnMessage) {

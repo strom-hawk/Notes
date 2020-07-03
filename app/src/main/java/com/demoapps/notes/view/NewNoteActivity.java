@@ -46,7 +46,6 @@ public class NewNoteActivity extends AppCompatActivity implements CallBack {
         initDataBinding();
         initToolBar();
         initViews();
-        setDateOnNewNote();
     }
 
     private void initDataBinding(){
@@ -71,15 +70,6 @@ public class NewNoteActivity extends AppCompatActivity implements CallBack {
         colorButton = findViewById(R.id.colorButton);
         colorView = findViewById(R.id.colorPickerView);
         dateLayout = findViewById(R.id.dateLayout);
-    }
-
-    private void setDateOnNewNote(){
-        Date date = Calendar.getInstance().getTime();
-        //System.out.println("Un formatted date ---> " + date);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(ApplicationConstants.DATE_FORMAT, Locale.ENGLISH);
-        String currentFormatedDate = simpleDateFormat.format(date);
-        //System.out.println("Formatted date ---> " +currentFormatedDate);
-        dateTextView.setText(currentFormatedDate);
     }
 
     @Override
