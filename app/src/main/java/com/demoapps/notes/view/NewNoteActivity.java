@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -36,6 +37,7 @@ public class NewNoteActivity extends AppCompatActivity implements CallBack {
     private EditText noteEditText;
     private TextView dateTextView;
     private ImageButton doneImageButton;
+    private ImageButton deleteImageButton;
     private Button colorButton;
     private ConstraintLayout colorView;
     private ConstraintLayout dateLayout;
@@ -46,6 +48,7 @@ public class NewNoteActivity extends AppCompatActivity implements CallBack {
         initDataBinding();
         initToolBar();
         initViews();
+        getIntentExtras();
     }
 
     private void initDataBinding(){
@@ -70,6 +73,31 @@ public class NewNoteActivity extends AppCompatActivity implements CallBack {
         colorButton = findViewById(R.id.colorButton);
         colorView = findViewById(R.id.colorPickerView);
         dateLayout = findViewById(R.id.dateLayout);
+        deleteImageButton = findViewById(R.id.deleteImageButton);
+    }
+
+    public void getIntentExtras(){
+        if(getIntent().hasExtra(ApplicationConstants.EDIT_NOTE_FLAG)){
+            boolean editNote = getIntent().hasExtra(ApplicationConstants.EDIT_NOTE_FLAG);
+            if(editNote){
+                if(getIntent().hasExtra(ApplicationConstants.NOTE_TITLE)){
+                    titleEditText.setText(getIntent().getExtras().getString(ApplicationConstants.NOTE_TITLE));
+                }
+                if(getIntent().hasExtra(ApplicationConstants.NOTE_TEXT)){
+                    noteEditText.setText(getIntent().getExtras().getString(ApplicationConstants.NOTE_TITLE));
+                }
+                if(getIntent().hasExtra(ApplicationConstants.NOTE_DATE)){
+                    dateTextView.setText(getIntent().getExtras().getString(ApplicationConstants.NOTE_TITLE));
+                }
+                deleteImageButton.setVisibility(View.VISIBLE);
+                newNoteViewModel.setUpdateData(titleEditText.getText().toString(),
+                        noteEditText.getText().toString());
+            }else{
+                deleteImageButton.setVisibility(View.GONE);
+            }
+        }else{
+            deleteImageButton.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -82,6 +110,9 @@ public class NewNoteActivity extends AppCompatActivity implements CallBack {
         } else if(txnType.equalsIgnoreCase(ApplicationConstants.NEW_NOTE_SAVED)){
             CommonUtils.showAlertDialogWithFinishActivity(this, ApplicationConstants.HIDE_DIALOG_TITLE,
                     getResources().getString(R.string.new_note_noted), getResources().getString(R.string.ok_button_msg), true);
+        } else if(txnType.equalsIgnoreCase(ApplicationConstants.NOTE_DELETED)){
+            CommonUtils.showAlertDialogWithFinishActivity(this, ApplicationConstants.HIDE_DIALOG_TITLE,
+                    getResources().getString(R.string.note_deleted), getResources().getString(R.string.ok_button_msg), true);
         }
     }
 

@@ -64,6 +64,14 @@ public class NewNoteViewModel extends ViewModel {
 
     }
 
+    public void deleteNote(View view){
+        System.out.println("delete called");
+        System.out.println("note title ---> " + newNoteModel.getNoteTitle());
+        System.out.println("note text ---> " + newNoteModel.getNoteText());
+        noteDAO.deleteNote(newNoteModel.getNoteTitle());
+        callBack.onSuccess(ApplicationConstants.NOTE_DELETED, ApplicationConstants.EMPTY_STRING, ApplicationConstants.EMPTY_STRING);
+    }
+
     private boolean checkExistingNotes(){
         List<NewNoteModel> notes = noteDAO.getNotes();
         for(int i=0; i<notes.size(); i++){
@@ -109,6 +117,11 @@ public class NewNoteViewModel extends ViewModel {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(ApplicationConstants.DATE_FORMAT, Locale.ENGLISH);
         newNoteModel.setLastUpdatedDate(simpleDateFormat.format(date));
         return simpleDateFormat.format(date);
+    }
+
+    public void setUpdateData(String noteTitle, String noteText){
+        newNoteModel.setNoteTitle(noteTitle);
+        newNoteModel.setNoteText(noteText);
     }
 
 }

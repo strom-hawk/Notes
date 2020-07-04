@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,11 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.demoapps.notes.R;
 import com.demoapps.notes.model.HomeScreenModel;
+import com.demoapps.notes.model.NewNoteModel;
 
 import java.util.ArrayList;
 
 public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private OnItemClickListener listener;
     private Activity context;
     private ArrayList<HomeScreenModel> notesArrayList;
 
@@ -55,6 +59,23 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             noteTitle = itemView.findViewById(R.id.noteTitle);
             noteDate = itemView.findViewById(R.id.noteDate);
             noteText = itemView.findViewById(R.id.noteText);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if(null != listener)
+                        listener.onItemClick(notesArrayList.get(position));
+                }
+            });
         }
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(HomeScreenModel homeScreenModel);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+        this.listener = onItemClickListener;
     }
 }

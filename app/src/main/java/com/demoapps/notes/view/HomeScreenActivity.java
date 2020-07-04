@@ -20,6 +20,7 @@ import com.demoapps.notes.adapter.NotesAdapter;
 import com.demoapps.notes.interfaces.CallBack;
 import com.demoapps.notes.model.HomeScreenModel;
 import com.demoapps.notes.R;
+import com.demoapps.notes.utils.ApplicationConstants;
 import com.demoapps.notes.viewmodel.HomeScreenViewModel;
 import com.demoapps.notes.databinding.ActivityHomescreenBinding;
 import com.demoapps.notes.viewmodel.HomeScreenViewModelFactory;
@@ -85,8 +86,27 @@ public class HomeScreenActivity extends AppCompatActivity implements CallBack, L
                 notesAdapter.notifyDataSetChanged();
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
                 recyclerView.setAdapter(notesAdapter);
+
+                notesAdapter.setOnItemClickListener(new NotesAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(HomeScreenModel homeScreenModel) {
+                        System.out.println("Title" + homeScreenModel.getNoteTitle());
+                        startEditingNote(homeScreenModel.getNoteTitle(),
+                                homeScreenModel.getNoteText(),
+                                homeScreenModel.getLastUpdatedDate());
+                    }
+                });
             }
         });
+    }
+
+    public void startEditingNote(String noteTitle, String noteText, String noteDate){
+        Intent intent = new Intent(this, NewNoteActivity.class);
+        intent.putExtra(ApplicationConstants.NOTE_TITLE, noteTitle);
+        intent.putExtra(ApplicationConstants.NOTE_TEXT,noteText);
+        intent.putExtra(ApplicationConstants.NOTE_DATE,noteDate);
+        intent.putExtra(ApplicationConstants.EDIT_NOTE_FLAG, true);
+        startActivity(intent);
     }
 
     @Override

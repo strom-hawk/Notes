@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "notes")
+import com.demoapps.notes.utils.ApplicationConstants;
+
+@Entity(tableName = ApplicationConstants.TABLE_NAME)
 public class NewNoteModel {
 
     @PrimaryKey
