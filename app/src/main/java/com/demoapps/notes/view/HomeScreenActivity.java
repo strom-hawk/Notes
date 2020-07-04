@@ -90,7 +90,6 @@ public class HomeScreenActivity extends AppCompatActivity implements CallBack, L
                 notesAdapter.setOnItemClickListener(new NotesAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(HomeScreenModel homeScreenModel) {
-                        System.out.println("Title" + homeScreenModel.getNoteTitle());
                         startEditingNote(homeScreenModel.getNoteTitle(),
                                 homeScreenModel.getNoteText(),
                                 homeScreenModel.getLastUpdatedDate());
