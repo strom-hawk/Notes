@@ -2,40 +2,57 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/dp_80"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="@dimen/dp_10">
+    android:layout_marginTop="@dimen/dp_10"
+    android:layout_marginBottom="@dimen/dp_5"
+    android:layout_marginStart="@dimen/dp_10"
+    android:layout_marginEnd="@dimen/dp_10"
+    android:background="@color/noteBgColor1">
 
     <TextView
         android:id="@+id/noteColor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/noteColor1"/>
+        android:layout_height="@dimen/dp_10"
+        android:background="@color/noteColor1"
+        android:visibility="gone"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10">
 
         <TextView
             android:id="@+id/noteTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Note Title"
+            android:textSize="@dimen/sp_20"
+            android:textColor="@color/dialogTextColor"
+            />
 
         <TextView
             android:id="@+id/noteDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/noteTitle"
+            app:layout_constraintStart_toStartOf="@id/noteTitle"
+            android:text="Note Date"
+            android:textSize="@dimen/sp_15"
+            android:layout_marginTop="@dimen/dp_5"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/noteText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Note Text"
+        android:paddingStart="@dimen/dp_10"
+        android:visibility="gone"
+        android:paddingBottom="@dimen/dp_5"/>
 
 </LinearLayout>

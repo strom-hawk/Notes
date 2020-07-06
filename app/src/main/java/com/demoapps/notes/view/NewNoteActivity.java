@@ -84,14 +84,14 @@ public class NewNoteActivity extends AppCompatActivity implements CallBack {
                     titleEditText.setText(getIntent().getExtras().getString(ApplicationConstants.NOTE_TITLE));
                 }
                 if(getIntent().hasExtra(ApplicationConstants.NOTE_TEXT)){
-                    noteEditText.setText(getIntent().getExtras().getString(ApplicationConstants.NOTE_TITLE));
+                    noteEditText.setText(getIntent().getExtras().getString(ApplicationConstants.NOTE_TEXT));
                 }
                 if(getIntent().hasExtra(ApplicationConstants.NOTE_DATE)){
-                    dateTextView.setText(getIntent().getExtras().getString(ApplicationConstants.NOTE_TITLE));
+                    dateTextView.setText(getIntent().getExtras().getString(ApplicationConstants.NOTE_DATE));
                 }
                 deleteImageButton.setVisibility(View.VISIBLE);
                 newNoteViewModel.setUpdateData(titleEditText.getText().toString(),
-                        noteEditText.getText().toString());
+                        noteEditText.getText().toString(), true);
             }else{
                 deleteImageButton.setVisibility(View.GONE);
             }
@@ -113,6 +113,9 @@ public class NewNoteActivity extends AppCompatActivity implements CallBack {
         } else if(txnType.equalsIgnoreCase(ApplicationConstants.NOTE_DELETED)){
             CommonUtils.showAlertDialogWithFinishActivity(this, ApplicationConstants.HIDE_DIALOG_TITLE,
                     getResources().getString(R.string.note_deleted), getResources().getString(R.string.ok_button_msg), true);
+        } else if(txnType.equalsIgnoreCase(ApplicationConstants.NOTE_UPDATED)){
+            CommonUtils.showAlertDialogWithFinishActivity(this, ApplicationConstants.HIDE_DIALOG_TITLE,
+                    getResources().getString(R.string.note_updated), getResources().getString(R.string.ok_button_msg), true);
         }
     }
 

@@ -31,6 +31,8 @@ public class NewNoteViewModel extends ViewModel {
     private NewNoteModel newNoteModel;
     private AppDatabase appDatabase;
     private NoteDAO noteDAO;
+    private boolean isUpdate = false;
+    private String oldNoteTitle = ApplicationConstants.EMPTY_STRING;
 
     public NewNoteViewModel(Context context, CallBack callBack) {
         this.context = context;
@@ -49,25 +51,31 @@ public class NewNoteViewModel extends ViewModel {
     }
 
     public void addNewNote(View view){
-        if(null != newNoteModel.getNoteTitle() && newNoteModel.getNoteTitle().length() > ApplicationConstants.NUMBER_ZERO){
-            if(!checkExistingNotes()){
-                noteDAO.insert(newNoteModel);
-                callBack.onSuccess(ApplicationConstants.NEW_NOTE_SAVED, ApplicationConstants.EMPTY_STRING, ApplicationConstants.EMPTY_STRING);
-            }else{
+        if(isUpdate){
+            if(null != newNoteModel.getNoteTitle() && newNoteModel.getNoteTitle().length() > ApplicationConstants.NUMBER_ZERO){
+                noteDAO.updateNote(newNoteModel.getNoteTitle(), newNoteModel.getNoteText(), newNoteModel.getLastUpdatedDate(), oldNoteTitle);
+                callBack.onSuccess(ApplicationConstants.NOTE_UPDATED, ApplicationConstants.EMPTY_STRING, ApplicationConstants.EMPTY_STRING);
+            } else{
                 CommonUtils.showAlertDialog(context, context.getResources().getString(R.string.error_message),
-                        context.getResources().getString(R.string.same_note_error_msg), context.getResources().getString(R.string.ok_button_msg));
+                        context.getResources().getString(R.string.title_hint), context.getResources().getString(R.string.ok_button_msg));
             }
-        } else{
-            CommonUtils.showAlertDialog(context, context.getResources().getString(R.string.error_message),
-                    context.getResources().getString(R.string.title_hint), context.getResources().getString(R.string.ok_button_msg));
+        }else{
+            if(null != newNoteModel.getNoteTitle() && newNoteModel.getNoteTitle().length() > ApplicationConstants.NUMBER_ZERO){
+                if(!checkExistingNotes()){
+                    noteDAO.insert(newNoteModel);
+                    callBack.onSuccess(ApplicationConstants.NEW_NOTE_SAVED, ApplicationConstants.EMPTY_STRING, ApplicationConstants.EMPTY_STRING);
+                }else{
+                    CommonUtils.showAlertDialog(context, context.getResources().getString(R.string.error_message),
+                            context.getResources().getString(R.string.same_note_error_msg), context.getResources().getString(R.string.ok_button_msg));
+                }
+            } else{
+                CommonUtils.showAlertDialog(context, context.getResources().getString(R.string.error_message),
+                        context.getResources().getString(R.string.title_hint), context.getResources().getString(R.string.ok_button_msg));
+            }
         }
-
     }
 
     public void deleteNote(View view){
-        System.out.println("delete called");
-        System.out.println("note title ---> " + newNoteModel.getNoteTitle());
-        System.out.println("note text ---> " + newNoteModel.getNoteText());
         noteDAO.deleteNote(newNoteModel.getNoteTitle());
         callBack.onSuccess(ApplicationConstants.NOTE_DELETED, ApplicationConstants.EMPTY_STRING, ApplicationConstants.EMPTY_STRING);
     }
@@ -119,9 +127,11 @@ public class NewNoteViewModel extends ViewModel {
         return simpleDateFormat.format(date);
     }
 
-    public void setUpdateData(String noteTitle, String noteText){
+    public void setUpdateData(String noteTitle, String noteText, boolean updateNote){
         newNoteModel.setNoteTitle(noteTitle);
         newNoteModel.setNoteText(noteText);
+        isUpdate = updateNote;
+        oldNoteTitle = noteTitle;
     }
 
 }

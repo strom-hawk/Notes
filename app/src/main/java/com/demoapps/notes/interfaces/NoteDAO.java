@@ -21,4 +21,10 @@ public interface NoteDAO {
 
     @Query("DELETE FROM "+ ApplicationConstants.TABLE_NAME +" WHERE noteTitle = :noteTitle")
     public void deleteNote(String noteTitle);
+
+    @Query("UPDATE " + ApplicationConstants.TABLE_NAME + " SET " +
+            "noteTitle=:noteTitle, " +
+            "noteText=:noteText, " +
+            "lastUpdatedDate=:lastUpdatedDate WHERE noteTitle=:oldNoteTitle")
+    public void updateNote(String noteTitle, String noteText, String lastUpdatedDate, String oldNoteTitle);
 }

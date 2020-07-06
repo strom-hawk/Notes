@@ -17,4 +17,5 @@ public class ApplicationConstants {
     public static final String NOTE_DATE = "NOTE_DATE";
     public static final String EDIT_NOTE_FLAG = "EDIT_NOTE_FLAG";
     public static final String NOTE_DELETED = "NOTE_DELETED";
+    public static final String NOTE_UPDATED = "NOTE_UPDATED";
 }
