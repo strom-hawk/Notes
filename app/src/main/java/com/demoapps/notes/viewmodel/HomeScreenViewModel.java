@@ -14,6 +14,7 @@ import com.demoapps.notes.model.HomeScreenModel;
 import com.demoapps.notes.model.NewNoteModel;
 import com.demoapps.notes.utils.AppDatabase;
 import com.demoapps.notes.utils.ApplicationConstants;
+import com.demoapps.notes.utils.NoteEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,9 +37,8 @@ public class HomeScreenViewModel extends ViewModel {
         this.callBack = callBack;
         this.context = context;
         notesLiveData = new MutableLiveData<>();
-        
-        appDatabase = Room.databaseBuilder(context, AppDatabase.class, "db-notes").allowMainThreadQueries().build();
-        noteDAO = appDatabase.getNotes();
+        appDatabase = AppDatabase.getInstance(context);
+        noteDAO = appDatabase.getNotesDao();
         init();
     }
 
@@ -52,11 +52,11 @@ public class HomeScreenViewModel extends ViewModel {
     }
 
     private void populateList(){
-        List<NewNoteModel> notes = null;
+        List<NoteEntity> notes = null;
 
         try{
-            appDatabase = Room.databaseBuilder(context, AppDatabase.class, "db-notes").allowMainThreadQueries().build();
-            noteDAO = appDatabase.getNotes();
+            appDatabase = AppDatabase.getInstance(context);
+            noteDAO = appDatabase.getNotesDao();
             notes = noteDAO.getNotes();
         }catch(Exception e){
             e.printStackTrace();
@@ -76,9 +76,9 @@ public class HomeScreenViewModel extends ViewModel {
         notesLiveData.setValue(notesArrayList);
     }
 
-    public List<NewNoteModel> getNotes(){
+    /*public List<NoteEntity> getNotes(){
         return noteDAO.getNotes();
-    }
+    }*/
 
     public  void addNewNote(View view){
         callBack.onSuccess(context.getString(R.string.add_new), ApplicationConstants.EMPTY_STRING, ApplicationConstants.EMPTY_STRING);

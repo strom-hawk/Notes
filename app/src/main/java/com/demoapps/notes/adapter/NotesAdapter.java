@@ -40,7 +40,6 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         HomeScreenModel homeScreenModel = notesArrayList.get(position);
         RecyclerViewViewHolder viewHolder = (RecyclerViewViewHolder) holder;
         viewHolder.noteTitle.setText(homeScreenModel.getNoteTitle());
-        viewHolder.noteText.setText(homeScreenModel.getNoteText());
         viewHolder.noteDate.setText(homeScreenModel.getLastUpdatedDate());
     }
 
@@ -52,13 +51,12 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     class RecyclerViewViewHolder extends RecyclerView.ViewHolder {
         TextView noteTitle;
         TextView noteDate;
-        TextView noteText;
 
         public RecyclerViewViewHolder(@NonNull View itemView) {
             super(itemView);
             noteTitle = itemView.findViewById(R.id.noteTitle);
             noteDate = itemView.findViewById(R.id.noteDate);
-            noteText = itemView.findViewById(R.id.noteText);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

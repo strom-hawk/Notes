@@ -1,15 +1,8 @@
 package com.demoapps.notes.model;
 
 import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
-import com.demoapps.notes.utils.ApplicationConstants;
-
-@Entity(tableName = ApplicationConstants.TABLE_NAME)
 public class HomeScreenModel {
-
-    @PrimaryKey
     @NonNull
     private String noteTitle;
     private String noteColor;

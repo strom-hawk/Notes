@@ -1,6 +1,7 @@
 package com.demoapps.notes.viewmodel;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -16,7 +17,9 @@ import com.demoapps.notes.model.NewNoteModel;
 import com.demoapps.notes.utils.AppDatabase;
 import com.demoapps.notes.utils.ApplicationConstants;
 import com.demoapps.notes.utils.CommonUtils;
+import com.demoapps.notes.utils.NoteEntity;
 
+import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -28,6 +31,7 @@ public class NewNoteViewModel extends ViewModel {
 
     private Context context;
     private CallBack callBack;
+    private NoteEntity noteEntity;
     private NewNoteModel newNoteModel;
     private AppDatabase appDatabase;
     private NoteDAO noteDAO;
@@ -38,8 +42,9 @@ public class NewNoteViewModel extends ViewModel {
         this.context = context;
         this.callBack = callBack;
         newNoteModel = new NewNoteModel();
-        appDatabase = Room.databaseBuilder(context, AppDatabase.class, "db-notes").allowMainThreadQueries().build();
-        noteDAO = appDatabase.getNotes();
+        noteEntity = new NoteEntity();
+        appDatabase = AppDatabase.getInstance(context);
+        noteDAO = appDatabase.getNotesDao();
     }
 
     public void toggleColorPicker(View view){
@@ -53,7 +58,7 @@ public class NewNoteViewModel extends ViewModel {
     public void addNewNote(View view){
         if(isUpdate){
             if(null != newNoteModel.getNoteTitle() && newNoteModel.getNoteTitle().length() > ApplicationConstants.NUMBER_ZERO){
-                noteDAO.updateNote(newNoteModel.getNoteTitle(), newNoteModel.getNoteText(), newNoteModel.getLastUpdatedDate(), oldNoteTitle);
+                new UpdateNoteTask(context, newNoteModel.getNoteTitle(), newNoteModel.getNoteText(), newNoteModel.getLastUpdatedDate(), oldNoteTitle).execute();
                 callBack.onSuccess(ApplicationConstants.NOTE_UPDATED, ApplicationConstants.EMPTY_STRING, ApplicationConstants.EMPTY_STRING);
             } else{
                 CommonUtils.showAlertDialog(context, context.getResources().getString(R.string.error_message),
@@ -62,7 +67,8 @@ public class NewNoteViewModel extends ViewModel {
         }else{
             if(null != newNoteModel.getNoteTitle() && newNoteModel.getNoteTitle().length() > ApplicationConstants.NUMBER_ZERO){
                 if(!checkExistingNotes()){
-                    noteDAO.insert(newNoteModel);
+                    insertDataToEntity(newNoteModel, noteEntity);
+                    new InsertNoteTask(context, noteEntity).execute();
                     callBack.onSuccess(ApplicationConstants.NEW_NOTE_SAVED, ApplicationConstants.EMPTY_STRING, ApplicationConstants.EMPTY_STRING);
                 }else{
                     CommonUtils.showAlertDialog(context, context.getResources().getString(R.string.error_message),
@@ -76,12 +82,12 @@ public class NewNoteViewModel extends ViewModel {
     }
 
     public void deleteNote(View view){
-        noteDAO.deleteNote(newNoteModel.getNoteTitle());
+        new DeleteNoteTask(context, newNoteModel.getNoteTitle()).execute();
         callBack.onSuccess(ApplicationConstants.NOTE_DELETED, ApplicationConstants.EMPTY_STRING, ApplicationConstants.EMPTY_STRING);
     }
 
     private boolean checkExistingNotes(){
-        List<NewNoteModel> notes = noteDAO.getNotes();
+        List<NoteEntity> notes = noteDAO.getNotes();
         for(int i=0; i<notes.size(); i++){
             if(notes.get(i).getNoteTitle().equalsIgnoreCase(newNoteModel.getNoteTitle())){
                 return true;
@@ -132,6 +138,87 @@ public class NewNoteViewModel extends ViewModel {
         newNoteModel.setNoteText(noteText);
         isUpdate = updateNote;
         oldNoteTitle = noteTitle;
+    }
+
+    public void insertDataToEntity(NewNoteModel newNoteModel, NoteEntity noteEntity){
+        noteEntity.setNoteTitle(newNoteModel.getNoteTitle());
+        noteEntity.setNoteText(newNoteModel.getNoteText());
+        noteEntity.setLastUpdatedDate(newNoteModel.getLastUpdatedDate());
+        noteEntity.setNoteColor(newNoteModel.getNoteColor());
+
+    }
+
+    private static class InsertNoteTask extends AsyncTask<Void, Void, Boolean>{
+        private Context context;
+        private NoteEntity noteEntity;
+
+        InsertNoteTask(Context context, NoteEntity noteEntity){
+            this.context = context;
+            this.noteEntity = noteEntity;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            AppDatabase.getInstance(context).getNotesDao().add(noteEntity);
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            if(aBoolean){ }
+        }
+    }
+
+    private static class UpdateNoteTask extends AsyncTask<Void, Void, Boolean>{
+        private Context context;
+        private String noteTitle;
+        private String noteText;
+        private String lastUpdatedDate;
+        private String oldNoteTitle;
+
+        UpdateNoteTask(Context context, String noteTitle, String noteText, String lastUpdatedDate, String oldNoteTitle){
+            this.context = context;
+            this.noteTitle = noteTitle;
+            this.noteText = noteText;
+            this.lastUpdatedDate = lastUpdatedDate;
+            this.oldNoteTitle = oldNoteTitle;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            AppDatabase.getInstance(context).getNotesDao().updateNote(
+                    noteTitle,
+                    noteText,
+                    lastUpdatedDate,
+                    oldNoteTitle);
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            if(aBoolean){ }
+        }
+    }
+
+    private static class DeleteNoteTask extends AsyncTask<Void, Void, Boolean>{
+        private Context context;
+        private String noteTitle;
+
+        DeleteNoteTask(Context context, String noteTitle){
+            this.context = context;
+            this.noteTitle = noteTitle;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            AppDatabase.getInstance(context).getNotesDao().deleteNote(noteTitle);
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            if(aBoolean){ }
+        }
     }
 
 }

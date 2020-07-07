@@ -1,19 +1,32 @@
-package com.demoapps.notes.model;
+package com.demoapps.notes.utils;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
-public class NewNoteModel {
-    private String noteTitle;
-    private String noteColor;
-    private String lastUpdatedDate;
-    private String noteText;
+@Entity(tableName = ApplicationConstants.TABLE_NAME)
+public class NoteEntity {
 
     @NonNull
+    @PrimaryKey
+    @ColumnInfo(name = "note_title")
+    private String noteTitle;
+
+    @ColumnInfo(name = "note_color")
+    private String noteColor;
+
+    @ColumnInfo(name = "note_lastUpdated")
+    private String lastUpdatedDate;
+
+    @ColumnInfo(name = "note_text")
+    private String noteText;
+
     public String getNoteTitle() {
         return noteTitle;
     }
 
-    public void setNoteTitle(@NonNull String noteTitle) {
+    public void setNoteTitle(String noteTitle) {
         this.noteTitle = noteTitle;
     }
 
