@@ -70,7 +70,9 @@ public class NewNoteViewModel extends ViewModel {
             if(null != newNoteModel.getNoteTitle() && newNoteModel.getNoteTitle().length() > ApplicationConstants.NUMBER_ZERO){
                 if(!checkExistingNotes()){
                     insertDataToEntity(newNoteModel, noteEntity);
-                    new InsertNoteTask(context, noteEntity).execute();
+                    new InsertNoteTask(
+                            context,
+                            noteEntity).execute();
                     callBack.onSuccess(ApplicationConstants.NEW_NOTE_SAVED, ApplicationConstants.EMPTY_STRING, ApplicationConstants.EMPTY_STRING);
                 }else{
                     CommonUtils.showAlertDialog(context, context.getResources().getString(R.string.error_message),
