@@ -89,6 +89,9 @@ public class NewNoteActivity extends AppCompatActivity implements CallBack {
                 if(getIntent().hasExtra(ApplicationConstants.NOTE_DATE)){
                     dateTextView.setText(getIntent().getExtras().getString(ApplicationConstants.NOTE_DATE));
                 }
+                if(getIntent().hasExtra(ApplicationConstants.NOTE_COLOR)){
+                    setBackgroundOnUpdate(getIntent().getExtras().getString(ApplicationConstants.NOTE_COLOR));
+                }
                 deleteImageButton.setVisibility(View.VISIBLE);
                 newNoteViewModel.setUpdateData(titleEditText.getText().toString(),
                         noteEditText.getText().toString(), true);
@@ -139,54 +142,63 @@ public class NewNoteActivity extends AppCompatActivity implements CallBack {
                 toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarNoteColor1));
                 dateLayout.setBackgroundColor(getResources().getColor(R.color.noteBgColor1));
                 noteEditText.setBackgroundColor(getResources().getColor(R.color.noteBgColor1));
+                newNoteViewModel.changeNoteColor(ApplicationConstants.NOTE_BG_BLUE);
                 break;
             case R.id.colorButton2:
                 colorButton.setBackgroundColor(getResources().getColor(R.color.noteColor2));
                 toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarNoteColor2));
                 dateLayout.setBackgroundColor(getResources().getColor(R.color.noteBgColor2));
                 noteEditText.setBackgroundColor(getResources().getColor(R.color.noteBgColor2));
+                newNoteViewModel.changeNoteColor(ApplicationConstants.NOTE_BG_RED);
                 break;
             case R.id.colorButton3:
                 colorButton.setBackgroundColor(getResources().getColor(R.color.noteColor3));
                 toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarNoteColor3));
                 dateLayout.setBackgroundColor(getResources().getColor(R.color.noteBgColor3));
                 noteEditText.setBackgroundColor(getResources().getColor(R.color.noteBgColor3));
+                newNoteViewModel.changeNoteColor(ApplicationConstants.NOTE_BG_PURPLE);
                 break;
             case R.id.colorButton4:
                 colorButton.setBackgroundColor(getResources().getColor(R.color.noteColor4));
                 toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarNoteColor4));
                 dateLayout.setBackgroundColor(getResources().getColor(R.color.noteBgColor4));
                 noteEditText.setBackgroundColor(getResources().getColor(R.color.noteBgColor4));
+                newNoteViewModel.changeNoteColor(ApplicationConstants.NOTE_BG_GREEN);
                 break;
             case R.id.colorButton5:
                 colorButton.setBackgroundColor(getResources().getColor(R.color.noteColor5));
                 toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarNoteColor5));
                 dateLayout.setBackgroundColor(getResources().getColor(R.color.noteBgColor5));
                 noteEditText.setBackgroundColor(getResources().getColor(R.color.noteBgColor5));
+                newNoteViewModel.changeNoteColor(ApplicationConstants.NOTE_BG_LIGHT_GREEN);
                 break;
             case R.id.colorButton6:
                 colorButton.setBackgroundColor(getResources().getColor(R.color.noteColor6));
                 toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarNoteColor6));
                 dateLayout.setBackgroundColor(getResources().getColor(R.color.noteBgColor6));
                 noteEditText.setBackgroundColor(getResources().getColor(R.color.noteBgColor6));
+                newNoteViewModel.changeNoteColor(ApplicationConstants.NOTE_BG_ORANGE);
                 break;
             case R.id.colorButton7:
                 colorButton.setBackgroundColor(getResources().getColor(R.color.noteColor7));
                 toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarNoteColor7));
                 dateLayout.setBackgroundColor(getResources().getColor(R.color.noteBgColor7));
                 noteEditText.setBackgroundColor(getResources().getColor(R.color.noteBgColor7));
+                newNoteViewModel.changeNoteColor(ApplicationConstants.NOTE_BG_DARK_BLUE);
                 break;
             case R.id.colorButton8:
                 colorButton.setBackgroundColor(getResources().getColor(R.color.noteColor8));
                 toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarNoteColor8));
                 dateLayout.setBackgroundColor(getResources().getColor(R.color.noteBgColor8));
                 noteEditText.setBackgroundColor(getResources().getColor(R.color.noteBgColor8));
+                newNoteViewModel.changeNoteColor(ApplicationConstants.NOTE_BG_BLACK);
                 break;
             case R.id.colorButton9:
                 colorButton.setBackgroundColor(getResources().getColor(R.color.noteColor9));
                 toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarNoteColor9));
                 dateLayout.setBackgroundColor(getResources().getColor(R.color.noteBgColor9));
                 noteEditText.setBackgroundColor(getResources().getColor(R.color.noteBgColor9));
+                newNoteViewModel.changeNoteColor(ApplicationConstants.NOTE_BG_PINK);
                 break;
             default:
                 System.out.println("no button clicked");
@@ -197,5 +209,76 @@ public class NewNoteActivity extends AppCompatActivity implements CallBack {
     @Override
     public void onFailure(String txnStatus, String txnMessage) {
 
+    }
+
+    private void setBackgroundOnUpdate(String noteColor){
+        switch(noteColor){
+            case ApplicationConstants.NOTE_BG_BLUE:
+                colorButton.setBackgroundColor(this.getResources().getColor(R.color.noteColor1));
+                toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarNoteColor1));
+                dateLayout.setBackgroundColor(getResources().getColor(R.color.noteBgColor1));
+                noteEditText.setBackgroundColor(getResources().getColor(R.color.noteBgColor1));
+                newNoteViewModel.changeNoteColor(ApplicationConstants.NOTE_BG_BLUE);
+                break;
+            case ApplicationConstants.NOTE_BG_RED:
+                colorButton.setBackgroundColor(getResources().getColor(R.color.noteColor2));
+                toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarNoteColor2));
+                dateLayout.setBackgroundColor(getResources().getColor(R.color.noteBgColor2));
+                noteEditText.setBackgroundColor(getResources().getColor(R.color.noteBgColor2));
+                newNoteViewModel.changeNoteColor(ApplicationConstants.NOTE_BG_RED);
+                break;
+            case ApplicationConstants.NOTE_BG_PURPLE:
+                colorButton.setBackgroundColor(getResources().getColor(R.color.noteColor3));
+                toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarNoteColor3));
+                dateLayout.setBackgroundColor(getResources().getColor(R.color.noteBgColor3));
+                noteEditText.setBackgroundColor(getResources().getColor(R.color.noteBgColor3));
+                newNoteViewModel.changeNoteColor(ApplicationConstants.NOTE_BG_PURPLE);
+                break;
+            case ApplicationConstants.NOTE_BG_GREEN:
+                colorButton.setBackgroundColor(getResources().getColor(R.color.noteColor4));
+                toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarNoteColor4));
+                dateLayout.setBackgroundColor(getResources().getColor(R.color.noteBgColor4));
+                noteEditText.setBackgroundColor(getResources().getColor(R.color.noteBgColor4));
+                newNoteViewModel.changeNoteColor(ApplicationConstants.NOTE_BG_GREEN);
+                break;
+            case ApplicationConstants.NOTE_BG_LIGHT_GREEN:
+                colorButton.setBackgroundColor(getResources().getColor(R.color.noteColor5));
+                toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarNoteColor5));
+                dateLayout.setBackgroundColor(getResources().getColor(R.color.noteBgColor5));
+                noteEditText.setBackgroundColor(getResources().getColor(R.color.noteBgColor5));
+                newNoteViewModel.changeNoteColor(ApplicationConstants.NOTE_BG_LIGHT_GREEN);
+                break;
+            case ApplicationConstants.NOTE_BG_ORANGE:
+                colorButton.setBackgroundColor(getResources().getColor(R.color.noteColor6));
+                toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarNoteColor6));
+                dateLayout.setBackgroundColor(getResources().getColor(R.color.noteBgColor6));
+                noteEditText.setBackgroundColor(getResources().getColor(R.color.noteBgColor6));
+                newNoteViewModel.changeNoteColor(ApplicationConstants.NOTE_BG_ORANGE);
+                break;
+            case ApplicationConstants.NOTE_BG_DARK_BLUE:
+                colorButton.setBackgroundColor(getResources().getColor(R.color.noteColor7));
+                toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarNoteColor7));
+                dateLayout.setBackgroundColor(getResources().getColor(R.color.noteBgColor7));
+                noteEditText.setBackgroundColor(getResources().getColor(R.color.noteBgColor7));
+                newNoteViewModel.changeNoteColor(ApplicationConstants.NOTE_BG_DARK_BLUE);
+                break;
+            case ApplicationConstants.NOTE_BG_BLACK:
+                colorButton.setBackgroundColor(getResources().getColor(R.color.noteColor8));
+                toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarNoteColor8));
+                dateLayout.setBackgroundColor(getResources().getColor(R.color.noteBgColor8));
+                noteEditText.setBackgroundColor(getResources().getColor(R.color.noteBgColor8));
+                newNoteViewModel.changeNoteColor(ApplicationConstants.NOTE_BG_BLACK);
+                break;
+            case ApplicationConstants.NOTE_BG_PINK:
+                colorButton.setBackgroundColor(getResources().getColor(R.color.noteColor9));
+                toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarNoteColor9));
+                dateLayout.setBackgroundColor(getResources().getColor(R.color.noteBgColor9));
+                noteEditText.setBackgroundColor(getResources().getColor(R.color.noteBgColor9));
+                newNoteViewModel.changeNoteColor(ApplicationConstants.NOTE_BG_PINK);
+                break;
+            default:
+                System.out.println("no button clicked");
+                break;
+        }
     }
 }

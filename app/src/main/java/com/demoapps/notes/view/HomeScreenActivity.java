@@ -92,18 +92,20 @@ public class HomeScreenActivity extends AppCompatActivity implements CallBack, L
                     public void onItemClick(HomeScreenModel homeScreenModel) {
                         startEditingNote(homeScreenModel.getNoteTitle(),
                                 homeScreenModel.getNoteText(),
-                                homeScreenModel.getLastUpdatedDate());
+                                homeScreenModel.getLastUpdatedDate(),
+                                homeScreenModel.getNoteColor());
                     }
                 });
             }
         });
     }
 
-    public void startEditingNote(String noteTitle, String noteText, String noteDate){
+    public void startEditingNote(String noteTitle, String noteText, String noteDate, String noteColor){
         Intent intent = new Intent(this, NewNoteActivity.class);
         intent.putExtra(ApplicationConstants.NOTE_TITLE, noteTitle);
         intent.putExtra(ApplicationConstants.NOTE_TEXT,noteText);
         intent.putExtra(ApplicationConstants.NOTE_DATE,noteDate);
+        intent.putExtra(ApplicationConstants.NOTE_COLOR, noteColor);
         intent.putExtra(ApplicationConstants.EDIT_NOTE_FLAG, true);
         startActivity(intent);
     }

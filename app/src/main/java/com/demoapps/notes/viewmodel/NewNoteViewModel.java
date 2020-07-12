@@ -5,10 +5,8 @@ import android.os.AsyncTask;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
-import androidx.room.Room;
 
 import com.demoapps.notes.R;
 import com.demoapps.notes.interfaces.CallBack;
@@ -19,13 +17,11 @@ import com.demoapps.notes.utils.ApplicationConstants;
 import com.demoapps.notes.utils.CommonUtils;
 import com.demoapps.notes.utils.NoteEntity;
 
-import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 public class NewNoteViewModel extends ViewModel {
 
@@ -58,7 +54,13 @@ public class NewNoteViewModel extends ViewModel {
     public void addNewNote(View view){
         if(isUpdate){
             if(null != newNoteModel.getNoteTitle() && newNoteModel.getNoteTitle().length() > ApplicationConstants.NUMBER_ZERO){
-                new UpdateNoteTask(context, newNoteModel.getNoteTitle(), newNoteModel.getNoteText(), newNoteModel.getLastUpdatedDate(), oldNoteTitle).execute();
+                new UpdateNoteTask(
+                        context,
+                        newNoteModel.getNoteTitle(),
+                        newNoteModel.getNoteText(),
+                        newNoteModel.getLastUpdatedDate(),
+                        newNoteModel.getNoteColor(),
+                        oldNoteTitle).execute();
                 callBack.onSuccess(ApplicationConstants.NOTE_UPDATED, ApplicationConstants.EMPTY_STRING, ApplicationConstants.EMPTY_STRING);
             } else{
                 CommonUtils.showAlertDialog(context, context.getResources().getString(R.string.error_message),
@@ -140,12 +142,19 @@ public class NewNoteViewModel extends ViewModel {
         oldNoteTitle = noteTitle;
     }
 
+    public void changeNoteColor(String noteBackGroundColor){
+        newNoteModel.setNoteColor(noteBackGroundColor);
+    }
+
     public void insertDataToEntity(NewNoteModel newNoteModel, NoteEntity noteEntity){
         noteEntity.setNoteTitle(newNoteModel.getNoteTitle());
         noteEntity.setNoteText(newNoteModel.getNoteText());
         noteEntity.setLastUpdatedDate(newNoteModel.getLastUpdatedDate());
-        noteEntity.setNoteColor(newNoteModel.getNoteColor());
-
+        if(null == newNoteModel.getNoteColor()){
+            noteEntity.setNoteColor(ApplicationConstants.NOTE_BG_BLUE);
+        }else{
+            noteEntity.setNoteColor(newNoteModel.getNoteColor());
+        }
     }
 
     private static class InsertNoteTask extends AsyncTask<Void, Void, Boolean>{
@@ -174,13 +183,15 @@ public class NewNoteViewModel extends ViewModel {
         private String noteTitle;
         private String noteText;
         private String lastUpdatedDate;
+        private String noteColor;
         private String oldNoteTitle;
 
-        UpdateNoteTask(Context context, String noteTitle, String noteText, String lastUpdatedDate, String oldNoteTitle){
+        UpdateNoteTask(Context context, String noteTitle, String noteText, String lastUpdatedDate, String noteColor, String oldNoteTitle){
             this.context = context;
             this.noteTitle = noteTitle;
             this.noteText = noteText;
             this.lastUpdatedDate = lastUpdatedDate;
+            this.noteColor = noteColor;
             this.oldNoteTitle = oldNoteTitle;
         }
 
@@ -190,6 +201,7 @@ public class NewNoteViewModel extends ViewModel {
                     noteTitle,
                     noteText,
                     lastUpdatedDate,
+                    noteColor,
                     oldNoteTitle);
             return true;
         }

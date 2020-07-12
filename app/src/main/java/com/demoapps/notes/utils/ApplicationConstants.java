@@ -15,7 +15,20 @@ public class ApplicationConstants {
     public static final String NOTE_TITLE = "NOTE_TITLE";
     public static final String NOTE_TEXT = "NOTE_TEXT";
     public static final String NOTE_DATE = "NOTE_DATE";
+    public static final String NOTE_COLOR = "NOTE_COLOR";
     public static final String EDIT_NOTE_FLAG = "EDIT_NOTE_FLAG";
     public static final String NOTE_DELETED = "NOTE_DELETED";
     public static final String NOTE_UPDATED = "NOTE_UPDATED";
+
+
+    public static final String NOTE_BG_BLUE = "BLUE";
+    public static final String NOTE_BG_RED = "RED";
+    public static final String NOTE_BG_PURPLE = "PURPLE";
+    public static final String NOTE_BG_GREEN = "GREEN";
+    public static final String NOTE_BG_LIGHT_GREEN= "LIGHTGREEN";
+    public static final String NOTE_BG_ORANGE = "ORANGE";
+    public static final String NOTE_BG_DARK_BLUE = "DARK_BLUE";
+    public static final String NOTE_BG_BLACK = "BLACK";
+    public static final String NOTE_BG_PINK = "PINK";
+
 }

@@ -24,6 +24,7 @@ public interface NoteDAO {
     @Query("UPDATE " + ApplicationConstants.TABLE_NAME + " SET " +
             "note_title=:noteTitle, " +
             "note_text=:noteText, " +
-            "note_lastUpdated=:lastUpdatedDate WHERE note_title=:oldNoteTitle")
-    public void updateNote(String noteTitle, String noteText, String lastUpdatedDate, String oldNoteTitle);
+            "note_lastUpdated=:lastUpdatedDate," +
+            "note_color=:noteColor WHERE note_title=:oldNoteTitle")
+    public void updateNote(String noteTitle, String noteText, String lastUpdatedDate, String noteColor, String oldNoteTitle);
 }
