@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.demoapps.notes.adapter.NotesAdapter;
@@ -40,6 +41,8 @@ public class HomeScreenActivity extends AppCompatActivity implements CallBack, L
     private NotesAdapter notesAdapter;
     private ActivityHomescreenBinding activityHomescreenBinding;
     private HomeScreenActivity context;
+
+    private LinearLayout addNewNoteLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +72,7 @@ public class HomeScreenActivity extends AppCompatActivity implements CallBack, L
         context = this;
         addButton = (ImageButton) findViewById(R.id.newNote);
         recyclerView = (RecyclerView) findViewById(R.id.notesRecyclerView);
+        addNewNoteLayout = findViewById(R.id.addNewNoteLayout);
     }
 
     @Override
@@ -82,6 +86,11 @@ public class HomeScreenActivity extends AppCompatActivity implements CallBack, L
         homeScreenViewModel.getNotesLiveData().observe(this, new Observer<ArrayList<HomeScreenModel>>() {
             @Override
             public void onChanged(ArrayList<HomeScreenModel> homeScreenModels) {
+                if(homeScreenModels.size()>0){
+                    addNewNoteLayout.setVisibility(View.INVISIBLE);
+                }else{
+                    addNewNoteLayout.setVisibility(View.VISIBLE);
+                }
                 notesAdapter = new NotesAdapter(context, homeScreenModels);
                 notesAdapter.notifyDataSetChanged();
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));

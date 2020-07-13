@@ -90,7 +90,13 @@ public class NewNoteActivity extends AppCompatActivity implements CallBack {
                     dateTextView.setText(getIntent().getExtras().getString(ApplicationConstants.NOTE_DATE));
                 }
                 if(getIntent().hasExtra(ApplicationConstants.NOTE_COLOR)){
-                    setBackgroundOnUpdate(getIntent().getExtras().getString(ApplicationConstants.NOTE_COLOR));
+                    if(null == getIntent().getExtras().getString(ApplicationConstants.NOTE_COLOR) ||
+                        ApplicationConstants.EMPTY_STRING.equalsIgnoreCase(getIntent().getExtras().getString(ApplicationConstants.NOTE_COLOR))){
+                        setBackgroundOnUpdate(ApplicationConstants.NOTE_BG_BLUE);
+                    }else{
+                        setBackgroundOnUpdate(getIntent().getExtras().getString(ApplicationConstants.NOTE_COLOR));
+                    }
+
                 }
                 deleteImageButton.setVisibility(View.VISIBLE);
                 newNoteViewModel.setUpdateData(titleEditText.getText().toString(),
@@ -135,6 +141,9 @@ public class NewNoteActivity extends AppCompatActivity implements CallBack {
     }
 
     private void changeNoteColor(String txnMessage){
+        noteEditText.setFocusableInTouchMode(true);
+        noteEditText.setFocusable(true);
+
         int viewId = Integer.parseInt(txnMessage);
         switch(viewId){
             case R.id.colorButton1:

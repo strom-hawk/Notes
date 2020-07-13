@@ -83,6 +83,33 @@
             app:layout_constraintTop_toTopOf="parent"
             />
 
+        <LinearLayout
+            android:id="@+id/addNewNoteLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center"
+            android:onClick="@{homeScreenHandler::addNewNote}">
+
+            <ImageView
+                android:id="@+id/addNewNote"
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="@dimen/dp_100"
+                android:src="@drawable/add_new_note_homepage" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_new_note"
+                android:layout_marginTop="@dimen/dp_10"/>
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
