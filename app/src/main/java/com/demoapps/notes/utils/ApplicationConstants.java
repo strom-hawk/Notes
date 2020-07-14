@@ -25,7 +25,7 @@ public class ApplicationConstants {
     public static final String NOTE_BG_RED = "RED";
     public static final String NOTE_BG_PURPLE = "PURPLE";
     public static final String NOTE_BG_GREEN = "GREEN";
-    public static final String NOTE_BG_LIGHT_GREEN= "LIGHTGREEN";
+    public static final String NOTE_BG_LIGHT_GREEN = "LIGHTGREEN";
     public static final String NOTE_BG_ORANGE = "ORANGE";
     public static final String NOTE_BG_DARK_BLUE = "DARK_BLUE";
     public static final String NOTE_BG_BLACK = "BLACK";

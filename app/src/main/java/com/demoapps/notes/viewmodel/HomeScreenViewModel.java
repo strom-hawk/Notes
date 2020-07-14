@@ -47,24 +47,24 @@ public class HomeScreenViewModel extends ViewModel {
         return notesLiveData;
     }
 
-    private void init(){
+    private void init() {
         populateList();
     }
 
-    private void populateList(){
+    private void populateList() {
         List<NoteEntity> notes = null;
 
-        try{
+        try {
             appDatabase = AppDatabase.getInstance(context);
             noteDAO = appDatabase.getNotesDao();
             notes = noteDAO.getNotes();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         notesArrayList = new ArrayList<>();
-        if(null != notes && notes.size() > 0){
-            for(int i=0; i<notes.size(); i++){
+        if (null != notes && notes.size() > 0) {
+            for (int i = 0; i < notes.size(); i++) {
                 HomeScreenModel homeScreenModel = new HomeScreenModel();
                 homeScreenModel.setNoteTitle(notes.get(i).getNoteTitle());
                 homeScreenModel.setNoteColor(notes.get(i).getNoteColor());
@@ -80,7 +80,7 @@ public class HomeScreenViewModel extends ViewModel {
         return noteDAO.getNotes();
     }*/
 
-    public  void addNewNote(View view){
+    public void addNewNote(View view) {
         callBack.onSuccess(context.getString(R.string.add_new), ApplicationConstants.EMPTY_STRING, ApplicationConstants.EMPTY_STRING);
     }
 }

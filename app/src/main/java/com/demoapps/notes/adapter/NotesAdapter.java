@@ -43,9 +43,9 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         RecyclerViewViewHolder viewHolder = (RecyclerViewViewHolder) holder;
         viewHolder.noteTitle.setText(homeScreenModel.getNoteTitle());
         viewHolder.noteDate.setText(homeScreenModel.getLastUpdatedDate());
-        if(null != homeScreenModel.getNoteColor()){
+        if (null != homeScreenModel.getNoteColor()) {
             changeNoteBackgroundColor(homeScreenModel.getNoteColor(), viewHolder);
-        }else{
+        } else {
             changeNoteBackgroundColor(ApplicationConstants.EMPTY_STRING, viewHolder);
         }
 
@@ -53,10 +53,10 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
 
-    private void changeNoteBackgroundColor(String backgroundColor, RecyclerViewViewHolder viewHolder){
-        switch (backgroundColor){
+    private void changeNoteBackgroundColor(String backgroundColor, RecyclerViewViewHolder viewHolder) {
+        switch (backgroundColor) {
             case ApplicationConstants.NOTE_BG_BLUE:
-                    viewHolder.parentCardView.setCardBackgroundColor(context.getResources().getColor(R.color.noteBgColor1));
+                viewHolder.parentCardView.setCardBackgroundColor(context.getResources().getColor(R.color.noteBgColor1));
                 break;
             case ApplicationConstants.NOTE_BG_RED:
                 viewHolder.parentCardView.setCardBackgroundColor(context.getResources().getColor(R.color.noteBgColor2));
@@ -82,9 +82,9 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             case ApplicationConstants.NOTE_BG_PINK:
                 viewHolder.parentCardView.setCardBackgroundColor(context.getResources().getColor(R.color.noteBgColor9));
                 break;
-                default:
-                    viewHolder.parentCardView.setCardBackgroundColor(context.getResources().getColor(R.color.noteBgColor1));
-                    break;
+            default:
+                viewHolder.parentCardView.setCardBackgroundColor(context.getResources().getColor(R.color.noteBgColor1));
+                break;
         }
     }
 
@@ -108,18 +108,18 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    if(null != listener)
+                    if (null != listener)
                         listener.onItemClick(notesArrayList.get(position));
                 }
             });
         }
     }
 
-    public interface OnItemClickListener{
+    public interface OnItemClickListener {
         void onItemClick(HomeScreenModel homeScreenModel);
     }
 
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.listener = onItemClickListener;
     }
 }

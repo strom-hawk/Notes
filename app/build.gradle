@@ -48,4 +48,16 @@ dependencies {
 
     implementation 'com.google.android.material:material:1.1.0'
 
+    //UNIT TEST CASES DEPENDENCIES
+    testImplementation 'io.mockk:mockk:1.9.3'
+    /*testImplementation 'org.mockito:mockito-inline:2.8.47'
+    testImplementation 'com.nhaarman:mockito-kotlin:1.5.0'
+    testImplementation 'org.powermock:powermock-module-junit4:1.6.2'
+    testImplementation 'org.powermock:powermock-module-junit4-rule:1.6.2'
+    testImplementation 'org.powermock:powermock-api-mockito:1.6.2'
+    testImplementation 'org.powermock:powermock-classloading-xstream:1.6.2'*/
+    testImplementation 'org.powermock:powermock-module-junit4:1.6.5'
+    testImplementation "org.powermock:powermock-module-junit4-rule:1.6.5"
+    testImplementation "org.powermock:powermock-api-mockito:1.6.5"
+    testImplementation "org.powermock:powermock-classloading-xstream:1.6.5"
 }

@@ -52,7 +52,7 @@ public class HomeScreenActivity extends AppCompatActivity implements CallBack, L
         initViews();
     }
 
-    private void initDataBinding(){
+    private void initDataBinding() {
         homeScreenModel = new HomeScreenModel();
         homeScreenViewModel = new HomeScreenViewModel(this);
         homeScreenViewModel = new HomeScreenViewModel(this, this);
@@ -62,13 +62,13 @@ public class HomeScreenActivity extends AppCompatActivity implements CallBack, L
         activityHomescreenBinding.setHomeScreenModel(homeScreenModel);
     }
 
-    private void initToolBar(){
+    private void initToolBar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getString(R.string.app_name));
     }
 
-    private void initViews(){
+    private void initViews() {
         context = this;
         addButton = (ImageButton) findViewById(R.id.newNote);
         recyclerView = (RecyclerView) findViewById(R.id.notesRecyclerView);
@@ -81,14 +81,14 @@ public class HomeScreenActivity extends AppCompatActivity implements CallBack, L
         initAdapter();
     }
 
-    private void initAdapter(){
+    private void initAdapter() {
         homeScreenViewModel = new ViewModelProvider(this, new HomeScreenViewModelFactory(this)).get(HomeScreenViewModel.class);
         homeScreenViewModel.getNotesLiveData().observe(this, new Observer<ArrayList<HomeScreenModel>>() {
             @Override
             public void onChanged(ArrayList<HomeScreenModel> homeScreenModels) {
-                if(homeScreenModels.size()>0){
+                if (homeScreenModels.size() > 0) {
                     addNewNoteLayout.setVisibility(View.INVISIBLE);
-                }else{
+                } else {
                     addNewNoteLayout.setVisibility(View.VISIBLE);
                 }
                 notesAdapter = new NotesAdapter(context, homeScreenModels);
@@ -109,11 +109,11 @@ public class HomeScreenActivity extends AppCompatActivity implements CallBack, L
         });
     }
 
-    public void startEditingNote(String noteTitle, String noteText, String noteDate, String noteColor){
+    public void startEditingNote(String noteTitle, String noteText, String noteDate, String noteColor) {
         Intent intent = new Intent(this, NewNoteActivity.class);
         intent.putExtra(ApplicationConstants.NOTE_TITLE, noteTitle);
-        intent.putExtra(ApplicationConstants.NOTE_TEXT,noteText);
-        intent.putExtra(ApplicationConstants.NOTE_DATE,noteDate);
+        intent.putExtra(ApplicationConstants.NOTE_TEXT, noteText);
+        intent.putExtra(ApplicationConstants.NOTE_DATE, noteDate);
         intent.putExtra(ApplicationConstants.NOTE_COLOR, noteColor);
         intent.putExtra(ApplicationConstants.EDIT_NOTE_FLAG, true);
         startActivity(intent);
@@ -121,7 +121,7 @@ public class HomeScreenActivity extends AppCompatActivity implements CallBack, L
 
     @Override
     public void onSuccess(String txnType, String txnStatus, String txnMessage) {
-        if(txnType.equalsIgnoreCase(getString(R.string.add_new))){
+        if (txnType.equalsIgnoreCase(getString(R.string.add_new))) {
             Intent intent = new Intent(this, AddNewActivity.class);
             startActivity(intent);
         }

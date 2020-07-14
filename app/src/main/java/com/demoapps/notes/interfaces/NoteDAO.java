@@ -18,7 +18,7 @@ public interface NoteDAO {
     @Query("SELECT * FROM " + ApplicationConstants.TABLE_NAME)
     public List<NoteEntity> getNotes();
 
-    @Query("DELETE FROM "+ ApplicationConstants.TABLE_NAME +" WHERE note_title = :noteTitle")
+    @Query("DELETE FROM " + ApplicationConstants.TABLE_NAME + " WHERE note_title = :noteTitle")
     public void deleteNote(String noteTitle);
 
     @Query("UPDATE " + ApplicationConstants.TABLE_NAME + " SET " +

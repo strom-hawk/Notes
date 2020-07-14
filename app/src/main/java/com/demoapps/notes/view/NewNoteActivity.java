@@ -51,7 +51,7 @@ public class NewNoteActivity extends AppCompatActivity implements CallBack {
         getIntentExtras();
     }
 
-    private void initDataBinding(){
+    private void initDataBinding() {
         newNoteModel = new NewNoteModel();
         newNoteViewModel = new NewNoteViewModel(this, this);
         ActivityNewNoteBinding activityNewNoteBinding = DataBindingUtil.setContentView(this, R.layout.activity_new_note);
@@ -59,13 +59,13 @@ public class NewNoteActivity extends AppCompatActivity implements CallBack {
         activityNewNoteBinding.setNewNoteViewModel(newNoteViewModel);
     }
 
-    private void initToolBar(){
+    private void initToolBar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getString(R.string.app_name));
     }
 
-    private void initViews(){
+    private void initViews() {
         titleEditText = findViewById(R.id.newNoteEditText);
         noteEditText = findViewById(R.id.noteEditText);
         dateTextView = findViewById(R.id.dateTextView);
@@ -76,24 +76,24 @@ public class NewNoteActivity extends AppCompatActivity implements CallBack {
         deleteImageButton = findViewById(R.id.deleteImageButton);
     }
 
-    public void getIntentExtras(){
-        if(getIntent().hasExtra(ApplicationConstants.EDIT_NOTE_FLAG)){
+    public void getIntentExtras() {
+        if (getIntent().hasExtra(ApplicationConstants.EDIT_NOTE_FLAG)) {
             boolean editNote = getIntent().hasExtra(ApplicationConstants.EDIT_NOTE_FLAG);
-            if(editNote){
-                if(getIntent().hasExtra(ApplicationConstants.NOTE_TITLE)){
+            if (editNote) {
+                if (getIntent().hasExtra(ApplicationConstants.NOTE_TITLE)) {
                     titleEditText.setText(getIntent().getExtras().getString(ApplicationConstants.NOTE_TITLE));
                 }
-                if(getIntent().hasExtra(ApplicationConstants.NOTE_TEXT)){
+                if (getIntent().hasExtra(ApplicationConstants.NOTE_TEXT)) {
                     noteEditText.setText(getIntent().getExtras().getString(ApplicationConstants.NOTE_TEXT));
                 }
-                if(getIntent().hasExtra(ApplicationConstants.NOTE_DATE)){
+                if (getIntent().hasExtra(ApplicationConstants.NOTE_DATE)) {
                     dateTextView.setText(getIntent().getExtras().getString(ApplicationConstants.NOTE_DATE));
                 }
-                if(getIntent().hasExtra(ApplicationConstants.NOTE_COLOR)){
-                    if(null == getIntent().getExtras().getString(ApplicationConstants.NOTE_COLOR) ||
-                        ApplicationConstants.EMPTY_STRING.equalsIgnoreCase(getIntent().getExtras().getString(ApplicationConstants.NOTE_COLOR))){
+                if (getIntent().hasExtra(ApplicationConstants.NOTE_COLOR)) {
+                    if (null == getIntent().getExtras().getString(ApplicationConstants.NOTE_COLOR) ||
+                            ApplicationConstants.EMPTY_STRING.equalsIgnoreCase(getIntent().getExtras().getString(ApplicationConstants.NOTE_COLOR))) {
                         setBackgroundOnUpdate(ApplicationConstants.NOTE_BG_BLUE);
-                    }else{
+                    } else {
                         setBackgroundOnUpdate(getIntent().getExtras().getString(ApplicationConstants.NOTE_COLOR));
                     }
 
@@ -101,51 +101,51 @@ public class NewNoteActivity extends AppCompatActivity implements CallBack {
                 deleteImageButton.setVisibility(View.VISIBLE);
                 newNoteViewModel.setUpdateData(titleEditText.getText().toString(),
                         noteEditText.getText().toString(), true);
-            }else{
+            } else {
                 deleteImageButton.setVisibility(View.GONE);
             }
-        }else{
+        } else {
             deleteImageButton.setVisibility(View.GONE);
         }
     }
 
     @Override
     public void onSuccess(String txnType, String txnStatus, String txnMessage) {
-        if(txnType.equalsIgnoreCase(ApplicationConstants.TOGGLE_COLOR_VIEW)){
+        if (txnType.equalsIgnoreCase(ApplicationConstants.TOGGLE_COLOR_VIEW)) {
             toggleColorPickerView();
-        } else if(txnType.equalsIgnoreCase(ApplicationConstants.COLOR_PICKED)){
+        } else if (txnType.equalsIgnoreCase(ApplicationConstants.COLOR_PICKED)) {
             changeNoteColor(txnMessage);
             colorView.setVisibility(View.GONE);
-        } else if(txnType.equalsIgnoreCase(ApplicationConstants.NEW_NOTE_SAVED)){
-            CommonUtils.showAlertDialogWithFinishActivity(this, ApplicationConstants.HIDE_DIALOG_TITLE,
+        } else if (txnType.equalsIgnoreCase(ApplicationConstants.NEW_NOTE_SAVED)) {
+            CommonUtils.showAlertDialogWithFinishActivity(this, getResources().getString(R.string.success_dialog_title),
                     getResources().getString(R.string.new_note_noted), getResources().getString(R.string.ok_button_msg), true);
-        } else if(txnType.equalsIgnoreCase(ApplicationConstants.NOTE_DELETED)){
-            CommonUtils.showAlertDialogWithFinishActivity(this, ApplicationConstants.HIDE_DIALOG_TITLE,
+        } else if (txnType.equalsIgnoreCase(ApplicationConstants.NOTE_DELETED)) {
+            CommonUtils.showAlertDialogWithFinishActivity(this, getResources().getString(R.string.success_dialog_title),
                     getResources().getString(R.string.note_deleted), getResources().getString(R.string.ok_button_msg), true);
-        } else if(txnType.equalsIgnoreCase(ApplicationConstants.NOTE_UPDATED)){
-            CommonUtils.showAlertDialogWithFinishActivity(this, ApplicationConstants.HIDE_DIALOG_TITLE,
+        } else if (txnType.equalsIgnoreCase(ApplicationConstants.NOTE_UPDATED)) {
+            CommonUtils.showAlertDialogWithFinishActivity(this, getResources().getString(R.string.success_dialog_title),
                     getResources().getString(R.string.note_updated), getResources().getString(R.string.ok_button_msg), true);
         }
     }
 
-    private void toggleColorPickerView(){
-        if(colorView.getVisibility() == View.VISIBLE){
+    private void toggleColorPickerView() {
+        if (colorView.getVisibility() == View.VISIBLE) {
             colorView.setVisibility(View.GONE);
             noteEditText.setFocusableInTouchMode(true);
             noteEditText.setFocusable(true);
 
-        }else{
+        } else {
             colorView.setVisibility(View.VISIBLE);
             noteEditText.setFocusable(false);
         }
     }
 
-    private void changeNoteColor(String txnMessage){
+    private void changeNoteColor(String txnMessage) {
         noteEditText.setFocusableInTouchMode(true);
         noteEditText.setFocusable(true);
 
         int viewId = Integer.parseInt(txnMessage);
-        switch(viewId){
+        switch (viewId) {
             case R.id.colorButton1:
                 colorButton.setBackgroundColor(this.getResources().getColor(R.color.noteColor1));
                 toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarNoteColor1));
@@ -220,8 +220,8 @@ public class NewNoteActivity extends AppCompatActivity implements CallBack {
 
     }
 
-    private void setBackgroundOnUpdate(String noteColor){
-        switch(noteColor){
+    private void setBackgroundOnUpdate(String noteColor) {
+        switch (noteColor) {
             case ApplicationConstants.NOTE_BG_BLUE:
                 colorButton.setBackgroundColor(this.getResources().getColor(R.color.noteColor1));
                 toolbar.setBackgroundColor(getResources().getColor(R.color.toolbarNoteColor1));

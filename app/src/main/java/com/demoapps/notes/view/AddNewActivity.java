@@ -27,7 +27,7 @@ public class AddNewActivity extends AppCompatActivity implements CallBack {
         initViews();
     }
 
-    private void initDataBinding(){
+    private void initDataBinding() {
         addNewModel = new AddNewModel();
         addNewViewModel = new AddNewViewModel(this, this);
         ActivityAddNewBinding activityAddNewBinding = DataBindingUtil.setContentView(this, R.layout.activity_add_new);
@@ -35,19 +35,19 @@ public class AddNewActivity extends AppCompatActivity implements CallBack {
         activityAddNewBinding.setAddNewViewModel(addNewViewModel);
     }
 
-    private void initViews(){
+    private void initViews() {
         addNewNotesLayout = findViewById(R.id.notes_layout);
     }
 
     @Override
     public void onSuccess(String txnType, String txnStatus, String txnMessage) {
         Intent intent = null;
-        if(txnType.equalsIgnoreCase(getString(R.string.add_new_note))){
+        if (txnType.equalsIgnoreCase(getString(R.string.add_new_note))) {
             intent = new Intent(this, NewNoteActivity.class);
-        } else if(txnType.equalsIgnoreCase(getString(R.string.add_new_checklist))){
+        } else if (txnType.equalsIgnoreCase(getString(R.string.add_new_checklist))) {
             Toast.makeText(this, getString(R.string.underdevelopment), Toast.LENGTH_SHORT).show();
         }
-        if(null != intent){
+        if (null != intent) {
             startActivity(intent);
             finish();
         }

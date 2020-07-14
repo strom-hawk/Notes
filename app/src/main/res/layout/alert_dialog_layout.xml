@@ -9,13 +9,12 @@
 
     <ImageView
         android:id="@+id/dialog_image"
-        android:layout_width="@dimen/dp_40"
-        android:layout_height="@dimen/dp_40"
-        android:src="@drawable/add_note"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_100"
+        android:src="@drawable/success"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/dp_20"
-        android:visibility="gone"/>
+        android:layout_marginTop="@dimen/dp_20" />
 
     <TextView
         android:id="@+id/dialog_title"
