@@ -25,4 +25,15 @@ public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase buildDatabaseInstance(Context context) {
         return Room.databaseBuilder(context, AppDatabase.class, ApplicationConstants.DB_NAME).allowMainThreadQueries().build();
     }
+
+    public static AppDatabase getInstanceForTestCase(Context context){
+        if(null == appDatabase){
+            appDatabase = buildDatabaseInstanceForTest(context);
+        }
+        return appDatabase;
+    }
+
+    private static AppDatabase buildDatabaseInstanceForTest(Context context){
+        return Room.inMemoryDatabaseBuilder(context, AppDatabase.class).build();
+    }
 }

@@ -9,13 +9,16 @@ import android.view.View;
 import androidx.lifecycle.ViewModel;
 
 import com.demoapps.notes.R;
+import com.demoapps.notes.asynctask.DeleteNoteTask;
 import com.demoapps.notes.interfaces.CallBack;
 import com.demoapps.notes.interfaces.NoteDAO;
 import com.demoapps.notes.model.NewNoteModel;
 import com.demoapps.notes.utils.AppDatabase;
 import com.demoapps.notes.utils.ApplicationConstants;
 import com.demoapps.notes.utils.CommonUtils;
+import com.demoapps.notes.asynctask.InsertNoteTask;
 import com.demoapps.notes.utils.NoteEntity;
+import com.demoapps.notes.asynctask.UpdateNoteTask;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -162,84 +165,4 @@ public class NewNoteViewModel extends ViewModel {
             noteEntity.setNoteColor(newNoteModel.getNoteColor());
         }
     }
-
-    private static class InsertNoteTask extends AsyncTask<Void, Void, Boolean> {
-        private Context context;
-        private NoteEntity noteEntity;
-
-        InsertNoteTask(Context context, NoteEntity noteEntity) {
-            this.context = context;
-            this.noteEntity = noteEntity;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-            AppDatabase.getInstance(context).getNotesDao().add(noteEntity);
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(Boolean aBoolean) {
-            if (aBoolean) {
-            }
-        }
-    }
-
-    private static class UpdateNoteTask extends AsyncTask<Void, Void, Boolean> {
-        private Context context;
-        private String noteTitle;
-        private String noteText;
-        private String lastUpdatedDate;
-        private String noteColor;
-        private String oldNoteTitle;
-
-        UpdateNoteTask(Context context, String noteTitle, String noteText, String lastUpdatedDate, String noteColor, String oldNoteTitle) {
-            this.context = context;
-            this.noteTitle = noteTitle;
-            this.noteText = noteText;
-            this.lastUpdatedDate = lastUpdatedDate;
-            this.noteColor = noteColor;
-            this.oldNoteTitle = oldNoteTitle;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-            AppDatabase.getInstance(context).getNotesDao().updateNote(
-                    noteTitle,
-                    noteText,
-                    lastUpdatedDate,
-                    noteColor,
-                    oldNoteTitle);
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(Boolean aBoolean) {
-            if (aBoolean) {
-            }
-        }
-    }
-
-    private static class DeleteNoteTask extends AsyncTask<Void, Void, Boolean> {
-        private Context context;
-        private String noteTitle;
-
-        DeleteNoteTask(Context context, String noteTitle) {
-            this.context = context;
-            this.noteTitle = noteTitle;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-            AppDatabase.getInstance(context).getNotesDao().deleteNote(noteTitle);
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(Boolean aBoolean) {
-            if (aBoolean) {
-            }
-        }
-    }
-
 }

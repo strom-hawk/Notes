@@ -12,7 +12,7 @@ import org.mockito.Mockito;
 public class AppDatabaseTest {
     private Context context = Mockito.mock(Context.class);
 
-    
+
     @Test
     public void testAppDatabaseInstance() {
         AppDatabase testAppDatabase = AppDatabase.getInstance(context);
