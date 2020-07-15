@@ -20,5 +20,6 @@
     <string name="note_updated">Note updated successfully.</string>
     <string name="add_new_note_text">Add New Note</string>
     <string name="success_dialog_title">Success</string>
+    <string name="empty_title_error_msg">Please enter title..</string>
 
 </resources>

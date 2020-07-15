@@ -7,27 +7,19 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.databinding.DataBindingUtil;
 
 import com.demoapps.notes.R;
-import com.demoapps.notes.databinding.ActivityAddNewBinding;
 import com.demoapps.notes.databinding.ActivityNewNoteBinding;
 import com.demoapps.notes.interfaces.CallBack;
 import com.demoapps.notes.model.NewNoteModel;
 import com.demoapps.notes.utils.ApplicationConstants;
 import com.demoapps.notes.utils.CommonUtils;
 import com.demoapps.notes.viewmodel.NewNoteViewModel;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class NewNoteActivity extends AppCompatActivity implements CallBack {
     private NewNoteModel newNoteModel;

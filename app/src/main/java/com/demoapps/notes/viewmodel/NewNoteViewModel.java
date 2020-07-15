@@ -1,7 +1,6 @@
 package com.demoapps.notes.viewmodel;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -10,15 +9,15 @@ import androidx.lifecycle.ViewModel;
 
 import com.demoapps.notes.R;
 import com.demoapps.notes.asynctask.DeleteNoteTask;
+import com.demoapps.notes.asynctask.InsertNoteTask;
+import com.demoapps.notes.asynctask.UpdateNoteTask;
 import com.demoapps.notes.interfaces.CallBack;
 import com.demoapps.notes.interfaces.NoteDAO;
 import com.demoapps.notes.model.NewNoteModel;
 import com.demoapps.notes.utils.AppDatabase;
 import com.demoapps.notes.utils.ApplicationConstants;
 import com.demoapps.notes.utils.CommonUtils;
-import com.demoapps.notes.asynctask.InsertNoteTask;
 import com.demoapps.notes.utils.NoteEntity;
-import com.demoapps.notes.asynctask.UpdateNoteTask;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -67,7 +66,7 @@ public class NewNoteViewModel extends ViewModel {
                 callBack.onSuccess(ApplicationConstants.NOTE_UPDATED, ApplicationConstants.EMPTY_STRING, ApplicationConstants.EMPTY_STRING);
             } else {
                 CommonUtils.showAlertDialog(context, context.getResources().getString(R.string.error_message),
-                        context.getResources().getString(R.string.title_hint), context.getResources().getString(R.string.ok_button_msg));
+                        context.getResources().getString(R.string.empty_title_error_msg), context.getResources().getString(R.string.ok_button_msg));
             }
         } else {
             if (null != newNoteModel.getNoteTitle() && newNoteModel.getNoteTitle().length() > ApplicationConstants.NUMBER_ZERO) {
@@ -83,7 +82,7 @@ public class NewNoteViewModel extends ViewModel {
                 }
             } else {
                 CommonUtils.showAlertDialog(context, context.getResources().getString(R.string.error_message),
-                        context.getResources().getString(R.string.title_hint), context.getResources().getString(R.string.ok_button_msg));
+                        context.getResources().getString(R.string.empty_title_error_msg), context.getResources().getString(R.string.ok_button_msg));
             }
         }
     }

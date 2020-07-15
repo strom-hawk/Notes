@@ -31,4 +31,6 @@ public class ApplicationConstants {
     public static final String NOTE_BG_BLACK = "BLACK";
     public static final String NOTE_BG_PINK = "PINK";
 
+    public static final long SYSTEM_CLOCK_SLEEP_TIME = 2000;
+
 }
