@@ -8,23 +8,17 @@ import com.demoapps.notes.utils.NoteEntity;
 
 import java.util.List;
 
-public class GetNotesTask extends AsyncTask<Void, Void, Boolean> {
-    private Context context;
+public class GetNotesTask extends AsyncTask<Void, Void, List<NoteEntity>> {
+    private AppDatabase appDatabase;
     private List<NoteEntity> retrivedNotes;
 
-    public GetNotesTask(Context context) {
-        this.context = context;
+    public GetNotesTask(AppDatabase appDatabase) {
+        this.appDatabase = appDatabase;
     }
 
     @Override
-    protected Boolean doInBackground(Void... voids) {
-        retrivedNotes = AppDatabase.getInstance(context).getNotesDao().getNotes();
-        return true;
-    }
-
-    @Override
-    protected void onPostExecute(Boolean aBoolean) {
-        if (aBoolean) { }
+    protected List<NoteEntity> doInBackground(Void... voids) {
+        return appDatabase.getNotesDao().getNotes();
     }
 
     public List<NoteEntity> getRetrievedNotes(){

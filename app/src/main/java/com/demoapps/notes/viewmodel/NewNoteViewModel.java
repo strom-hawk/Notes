@@ -74,7 +74,7 @@ public class NewNoteViewModel extends ViewModel {
                 if (!checkExistingNotes()) {
                     insertDataToEntity(newNoteModel, noteEntity);
                     new InsertNoteTask(
-                            context,
+                            appDatabase,
                             noteEntity).execute();
                     callBack.onSuccess(ApplicationConstants.NEW_NOTE_SAVED, ApplicationConstants.EMPTY_STRING, ApplicationConstants.EMPTY_STRING);
                 } else {

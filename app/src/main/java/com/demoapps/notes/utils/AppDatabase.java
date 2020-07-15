@@ -34,6 +34,8 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     private static AppDatabase buildDatabaseInstanceForTest(Context context){
-        return Room.inMemoryDatabaseBuilder(context, AppDatabase.class).build();
+        return Room.inMemoryDatabaseBuilder(context, AppDatabase.class)
+                .allowMainThreadQueries()
+                .build();
     }
 }
