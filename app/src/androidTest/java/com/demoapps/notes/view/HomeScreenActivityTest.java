@@ -15,13 +15,14 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 public class HomeScreenActivityTest {
-    private boolean notesPresent = false;
+    private boolean notesPresent = true;
 
     @Rule
     public ActivityTestRule<HomeScreenActivity> homeScreenActivityActivityTestRule = new ActivityTestRule<HomeScreenActivity>(HomeScreenActivity.class);
 
     @Test
     public void testHomeScreenButtons() {
+        SystemClock.sleep(ApplicationConstants.SYSTEM_CLOCK_SLEEP_TIME);
 
         if(!notesPresent) {
             //CLICK ON ADD NEW LAYOUT ON HOMESCREEN

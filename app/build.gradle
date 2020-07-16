@@ -67,4 +67,8 @@ dependencies {
 
     //ACTIVITY TEST RULE
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
+
+    //FOR CLICKING INSIDE RECYCLER VIEW
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.0'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:2.0'
 }
