@@ -9,7 +9,7 @@ which can be used to note down important notes and make list for other stuff.
 
 •	Architecture	:	MVVM
 
-•	Database	:	Room Persistance
+•	Database	:	Room Persistance Library
 
             o	SQLite in Android with Room Persistence Library.
             o	Custom queries, get, insert, delete, update.
