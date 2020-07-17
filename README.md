@@ -12,7 +12,6 @@ which can be used to note down important notes and make list for other stuff.
 •	Database	:	Room Persistance
 
             o	SQLite in Android with Room Persistence Library.
-            
             o	Custom queries, get, insert, delete, update.
 
 •	Unit testcases	:	Junit and Mockito
