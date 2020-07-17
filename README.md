@@ -3,12 +3,17 @@
 An android notes application with functionalities of notes and checklist
 which can be used to note down important notes and make list for other stuff.
 
-Specs:
+•	Platform    	:	Android
 
-1. Full MVVM Architecture used for the project.
+•	Language Used	:	Java
 
-2. Room Library for database manipulations.
+•	Architecture	:	MVVM
 
-3. Unit test cases using Junit and Mockito.
+•	Database	:	Room Persistance
+            o	SQLite in Android with Room Persistence Library.
+            o	Custom queries, get, insert, delete, update.
 
-4. UI test cases using Espresso.
+•	Unit testcases	:	Junit and Mockito
+
+•	UI test cases	:	Espresso
+
